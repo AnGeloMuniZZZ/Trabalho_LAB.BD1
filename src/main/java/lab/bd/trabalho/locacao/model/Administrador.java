@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Administrador {
 	
-	private String cpf;
+	private int codigo;
 	private String nome;
-	private String login;
+	private String usuario;
 	private String senha;
 
 }
