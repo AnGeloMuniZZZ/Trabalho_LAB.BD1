@@ -23,11 +23,26 @@ public class CadastroAlunoController {
 	private AlunoDao aDao;
 	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.GET)
+	/**
+	 * Funcao responsavel por mapear a requisicao GET e caregar a pagina /cadastroAluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina
+	 */
 	public ModelAndView alunoGet(@RequestParam Map<String, String> params, ModelMap model) {
 		return new ModelAndView("cadastroAluno");
 	}
+
 	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.POST)
+	/**
+	 * Cria o objeto aluno e tenta inseri-lo no banco
+	 * 
+	 * @param params
+	 * @param model
+	 * @return Retorna uma mensagem de validacao ou erro e dados gerados pelo banco
+	 */
 	public ModelAndView alunoPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String cpf = params.get("cpf");
 		String nome = params.get("nome_completo");

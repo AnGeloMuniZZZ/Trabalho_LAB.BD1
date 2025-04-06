@@ -49,6 +49,17 @@ form{
 	font-weight: bolder;
 }
 
+.div_h2{
+	text-align: justify;
+}
+.h2_mensagem_DADOS{
+	color: white;
+	justify-content:flex-start;
+	letter-spacing: normal;
+	font-size: 20px;
+	margin: 2.5px 0;
+}
+
 .h2_mensagem_ERRO{
 	color: #f52b2b;
 }

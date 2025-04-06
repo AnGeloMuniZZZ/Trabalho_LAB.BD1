@@ -20,32 +20,36 @@
 				<table>
 					<tr>
 						<td><label for="CPF">CPF:</label></td>
-						<td colspan="2"><input type="number" name="cpf" id="cpf"
+						<td colspan="1"><input type="number" name="cpf" id="cpf"
 							placeholder="xxx.xxx.xxx-xx"
 							value='<c:out value="${aluno.cpf }"/>'></td>
 					</tr>
 					<tr>
 						<td><label for="Nome_Completo">Nome Completo:</label></td>
-						<td colspan="5"><input type="text" name="nome_completo"
+						<td colspan="1"><input type="text" name="nome_completo"
 							id="nome" placeholder="Digite seu nome completo"
 							value='<c:out value="${aluno.nome_completo }"/>'></td>
 					</tr>
 					<tr>
 						<td><label for="Senha">Senha:</label></td>
-						<td colspan="2"><input type="password" name="senha"
+						<td colspan="1"><input type="password" name="senha"
 							id="senha" placeholder="Digite uma senha"
 							value='<c:out value="${aluno.senha }"/>'></td>
 					</tr>
 					<tr>
-						<td><input type="submit" name="botao" value="inserir">
-							<a href="index" class="a_link_clicavel">Voltar ao login</a>
-						<td />
+						<td colspan="2">
+							<div style="display: flex; align-items: center; gap: 25px;">
+								<input type="submit" name="botao" value="inserir"
+									class="botao_inserir"> <a href="index"
+									class="a_link_clicavel">Voltar ao login</a>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 
-		<div style="margin-top: 15px;">
+		<div>
 			<c:if test="${not empty saida }">
 				<h2 class="h2_mensagem_VALIDACAO">
 					<c:out value="${saida }" />
@@ -59,9 +63,10 @@
 			</c:if>
 		</div>
 
-		<div id="dado_oculto">
-			<h2>Seu nome de usuário é: ${aluno.email }</h2>
-			<h2>Seu ra é: ${aluno.ra }</h2>
+		<div class="div_h2">
+			<h2 class="h2_mensagem_DADOS">Seu nome de usuário é:
+				${aluno.email }</h2>
+			<h2 class="h2_mensagem_DADOS">Seu ra é: ${aluno.ra }</h2>
 		</div>
 
 

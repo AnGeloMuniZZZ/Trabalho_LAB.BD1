@@ -260,6 +260,10 @@ DECLARE @erro VARCHAR(200)
 
 -- INSERIR ALUNO
 IF (UPPER(@opc) = 'I') BEGIN
+	IF (@nome_completo IS NULL OR TRIM(@nome_completo) = '') BEGIN
+		RAISERROR('Nome em branco', 16 ,1)
+		RETURN
+	END
 	EXEC validar_cpf @cpf, @validacao_cpf OUTPUT
 	EXEC validar_senha @senha, @validacao_senha OUTPUT
 	EXEC encontrar_cpf @cpf, @duplicata_cpf OUTPUT
@@ -482,9 +486,8 @@ END
 GO
 
 -- Valida a existencia de um LOGIN de um ALUNO
-CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8), @cpf VARCHAR(11) OUTPUT, @validacao BIT OUTPUT) AS
+CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8), @validacao BIT OUTPUT) AS
 IF(EXISTS (SELECT email, senha FROM Aluno WHERE email = @login AND senha = @senha)) BEGIN
-	SELECT @cpf = cpf FROM Aluno WHERE email = @login AND senha = @senha 
 	SET @validacao = 1
 END
 ELSE BEGIN
@@ -494,9 +497,8 @@ END
 GO
 
 -- Valida a existencia de um LOGIN de um ADMINISTRADOR
-CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40), @codigo INTEGER OUTPUT, @validacao BIT OUTPUT) AS
+CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40), @validacao BIT OUTPUT) AS
 IF(EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
-	SELECT @codigo = codigo FROM Administrador WHERE usuario = @login AND senha = @senha 
 	SET @validacao = 1
 END
 ELSE BEGIN 
@@ -566,6 +568,12 @@ CREATE PROCEDURE controle_inserir_administrador(@codigo INTEGER, @nome VARCHAR(1
 
 DECLARE @codigo_duplicata BIT
 DECLARE @erro VARCHAR(200)
+
+IF (@nome IS NULL OR TRIM(@nome) = '' OR @usuario IS NULL OR TRIM(@usuario) = '' OR @senha IS NULL OR TRIM(@senha) = '') BEGIN
+	SET @erro = 'Campos em branco'
+	RAISERROR(@erro, 16, 1)
+	RETURN
+END
 
 EXEC encontrar_adm @codigo, @codigo_duplicata OUTPUT
 
