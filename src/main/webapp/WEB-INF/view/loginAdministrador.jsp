@@ -43,5 +43,15 @@
 			</table>
 		</form>
 	</div>
+	<div class="conteiner" align="center">
+		<c:if test="${not empty saida }">
+			<h2><c:out value="${saida }"/></h2>
+		</c:if>
+	</div>
+		<div class="conteiner" align="center">
+		<c:if test="${not empty erro }">
+			<h2><c:out value="${erro }"/></h2>
+		</c:if>
+	</div>
 </body>
 </html>

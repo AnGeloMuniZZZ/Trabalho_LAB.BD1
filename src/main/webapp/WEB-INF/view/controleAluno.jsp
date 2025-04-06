@@ -24,12 +24,17 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="nome" id="nome" placeholder="Nome completo" value='<c:out value="${aluno.nome }"/>'>
+						<p><c:out value="${aluno.ra }"/></p>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="nome" id="nome" placeholder="Nome completo" value='<c:out value="${aluno.ra }"/>'>
+						<p><c:out value="${aluno.nome_completo }"/></p>
+					</td>
+				</tr>
+				<tr style="border-bottom: solid white 12px;">
+					<td colspan="4">
+						<p><c:out value="${aluno.email }"/></p>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
@@ -39,11 +44,50 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td><input style="margin: 0 2px;" type="submit" name="botao" value="atualizar" class="btn btn-dark"><td/>
-					<td><p>Obs. O CPF e o nome <b>NÂO</b> são alteráveis.</p></td>
 				</tr>
 			</table>
 		</form>
-		<input type="button" name="voltar" id="voltar" onclick="location.href='locacao'" value="Voltar ao login">
+		<input type="button" name="voltar" id="voltar" onclick="location.href='locacao'" value="Deslogar">
+		<a href="controleExemplar">Cadastrar Exemplares</a>
+	</div>
+	<br/>
+	<div class="conteiner" align="center">
+		<c:if test="${not empty saida }">
+			<h2><c:out value="${saida }"/></h2>
+		</c:if>
+	</div>
+		<div class="conteiner" align="center">
+		<c:if test="${not empty erro }">
+			<h2><c:out value="${erro }"/></h2>
+		</c:if>
+	</div>
+	<div class="conteiner" align="center">
+		<c:if test="${not empty alunos }">
+			<table class=""table table-dark table-striped-columns>
+				<thead>
+					<tr>
+						<th>CPF</th>
+						<th>RA</th>
+						<th>Nome Completo</th>
+						<th>Email</th>
+						<th>Senha</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="a" items="${alunos }">
+						<tr>
+							<td>${a.cpf }</td>
+							<td>${a.ra }</td>
+							<td>${a.nome_completo }</td>
+							<td>${a.email }</td>
+							<td>${a.senha }</td>
+							<td><a href="${pageContext.request.contextPath }/controleAluno?acao=editar&id=${a.cpf}">EDITAR</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
 	</div>
 </body>
 </html>

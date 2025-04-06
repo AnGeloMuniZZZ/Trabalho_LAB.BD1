@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a href="${pageContext.request.contextPath}/aluno">Cadastrar</a>
+						<a href="cadastroAluno">Cadastrar</a>
 					</td>
 					<td>
 						<a href="administrador">Entrar como Administrador</a>
