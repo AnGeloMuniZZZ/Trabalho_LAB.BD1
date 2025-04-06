@@ -1,21 +1,21 @@
 package lab.bd.trabalho.locacao.model;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Exemplar {
+public class Locacao {
 	
-	private int codigo_exemplar;
-	private int administrador_codigo;
-	private String nome;
-	private int qtd_paginas;
-
+	private Exemplar exemplar;
+	private Aluno aluno;
+	private LocalDate dataRetirada;
+	private int qntDias;
+	
 }
