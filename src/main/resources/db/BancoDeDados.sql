@@ -482,15 +482,21 @@ END
 GO
 
 -- Valida a existencia de um LOGIN de um ALUNO
-CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8)) AS
-IF(NOT EXISTS (SELECT email, senha FROM Aluno WHERE email = @login AND senha = @senha)) BEGIN
+CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8), @cpf VARCHAR(11) OUTPUT) AS
+IF(EXISTS (SELECT email, senha FROM Aluno WHERE email = @login AND senha = @senha)) BEGIN
+	SELECT @cpf = cpf FROM Aluno WHERE email = @login AND senha = @senha 
+END
+ELSE BEGIN
 	RAISERROR('Usuario ou Senha Invalidos',16,1)
 END
 GO
 
 -- Valida a existencia de um LOGIN de um ADMINISTRADOR
-CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40)) AS
-IF(NOT EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
+CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40), @codigo INTEGER OUTPUT) AS
+IF(EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
+	SELECT @codigo = codigo FROM Administrador WHERE usuario = @login AND senha = @senha 
+END
+ELSE BEGIN 
 	RAISERROR('Usuario ou Senha Invalidos',16,1)
 END
 GO

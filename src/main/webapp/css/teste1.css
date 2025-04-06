@@ -1,7 +1,11 @@
 @charset "UTF-8";
 
 body {
-	background-color: rgb(51,51,51);
+	
+	background: linear-gradient(#3e3e3e, #111111);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 	font-family: Helvetica;
 }
 
@@ -40,6 +44,17 @@ input[type=submit]:active{
 .div_login {
 	margin-top: 20%;
 }
+
+.a_link_clicavel{
+	color: white;
+	text-decoration: underline;
+}
+
+.a_link_clicavel:hover{
+	color: blue;
+	text-decoration: none;
+}
+
 
 .div_gata_sora__direita {
 	position: fixed;

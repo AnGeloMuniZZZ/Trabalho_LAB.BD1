@@ -22,8 +22,8 @@
 					<td>
 						<label for="login">Login: </label>
 					</td>
-					<td colspan="3">
-						<input type="text" placeholder="Nome de Usuario" name="login" value='<c:out value="${aluno.email }"/>'>
+					<td colspan="4">
+						<input type="text" style="width: 95%" placeholder="Nome de Usuario" name="login" value='<c:out value="${aluno.email }"/>'>
 					</td>
 				</tr>
 				<tr>
@@ -31,7 +31,7 @@
 						<label for="senha">Senha: </label>
 					</td>
 					<td colspan="4">
-						<input type="password" placeholder="Sua senha" name="senha" value='<c:out value="${aluno.senha }"/>'>
+						<input type="password" style="width: 95%" placeholder="Sua senha" name="senha" value='<c:out value="${aluno.senha }"/>'>
 					</td>
 				</tr>
 				<tr>
@@ -39,11 +39,10 @@
 				</tr>
 				<tr>
 					<td>
-						<a href="cadastroAluno">Cadastrar</a>
+						<a href="cadastroAluno" class="a_link_clicavel">Cadastrar</a>
 					</td>
-					<td>
-						<a href="loginAdministrador">Entrar como Administrador</a>
-						<!-- Diniuir botao e tamanho fonte, se der deixar ele arredondado -->
+					<td >
+						<a href="loginAdministrador" class="a_link_clicavel">Entrar como Administrador</a>
 					</td>
 				</tr>
 			</table>
