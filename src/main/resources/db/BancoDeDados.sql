@@ -321,6 +321,25 @@ ELSE BEGIN
 END
 GO
 
+--Verifica pelo CODIGO EXEMPLAR se e um ISBN(L) ou ISSN(R)
+CREATE PROCEDURE descobrir_tipo_isbn_issn_por_codigo (@codigo_exemplar INTEGER, @tipo CHAR(1) OUTPUT) AS
+
+DECLARE @codigo_existente AS BIT
+EXEC encontrar_codigo_exemplar @codigo_exemplar, @codigo_existente OUTPUT
+
+IF(@codigo_existente = 1) BEGIN
+	IF(EXISTS(SELECT * FROM Exemplar, Livro WHERE codigo_exemplar = @codigo_exemplar AND ExemplarCodigo = codigo_exemplar)) BEGIN
+		SET @tipo = 'L'
+	END
+	ELSE BEGIN
+		SET @tipo = 'R'
+	END
+END
+ELSE BEGIN
+	RAISERROR('Codigo inexistente', 16, 1)
+END
+GO
+
 --Valida a existencia de um Cod de Exemplar--
 CREATE PROCEDURE encontrar_codigo_exemplar (@codigo_exemplar INTEGER, @validacao BIT OUTPUT) AS
 
@@ -463,22 +482,16 @@ END
 GO
 
 -- Valida a existencia de um LOGIN de um ALUNO
-CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8), @validacao BIT OUTPUT) AS
-IF(EXISTS (SELECT email, senha FROM Aluno WHERE email = @login AND senha = @senha)) BEGIN
-	SET @validacao = 1
-END
-ELSE BEGIN
-	SET @validacao = 0
+CREATE PROCEDURE realizar_login_aluno (@login VARCHAR(80), @senha VARCHAR(8)) AS
+IF(NOT EXISTS (SELECT email, senha FROM Aluno WHERE email = @login AND senha = @senha)) BEGIN
+	RAISERROR('Usuario ou Senha Invalidos',16,1)
 END
 GO
 
 -- Valida a existencia de um LOGIN de um ADMINISTRADOR
-CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40), @validacao BIT OUTPUT) AS
-IF(EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
-	SET @validacao = 1
-END
-ELSE BEGIN
-	SET @validacao = 0
+CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40)) AS
+IF(NOT EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
+	RAISERROR('Usuario ou Senha Invalidos',16,1)
 END
 GO
 
@@ -872,7 +885,7 @@ USE master
 DROP DATABASE LocacaoLivros
 */
 
-s
+
 SELECT * FROM Aluno
 SELECT * FROM Administrador
 SELECT * FROM Exemplar

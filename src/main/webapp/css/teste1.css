@@ -2,36 +2,46 @@
 
 body {
 	background-color: rgb(51,51,51);
+	font-family: Helvetica;
+}
+
+input{
+	font-family: Helvetica;
+}
+
+input[type=submit] {
+	font-size: 16px;
+	padding: 12px 28px;
+	border-radius: 12px;
+	background-color: #4f5757;
+	color: white;
+	border: 2.2px solid #4f5757;
+	
+}
+
+input[type=submit]:hover {
+	color: black;
+	background-color: white;
+	border: 2.2px solid #4f5757;
+	transition-duration: 0.45s;
+}
+
+input[type=submit]:active{
+	color: black;
+	background-color: white; 
+	box-shadow: 0 2px #6f6f6f;
+	transform: translateY(4px);
+}
+
+.h1_titulo{
+	font-weight: bolder;
 }
 
 .div_login {
-	margin-top: 30px;
+	margin-top: 20%;
 }
 
-.div_retangulo {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 200px;
-	height: 100%;
-	background-color: rgb(102, 102, 255);
-	z-index: -1;
-}
-
-.div_sora {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 200px;
-	height: 100%;
-	background-image: url('../imagens/SoraLendo.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	z-index: -1;
-}
-
-.div_sora_direita {
+.div_gata_sora__direita {
 	position: fixed;
 	top: 0px;
 	right: 0px;
@@ -43,21 +53,16 @@ body {
 	z-index: -1;
 }
 
-
-.table_round{
-	border: 1px solid black;
-	border-radius: 10px
+.div_gata_sora__esquerda {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 17%;
+	height: 100%;
+	background-image: url('../imagens/SoraLendo.jpg');
+	background-size: cover;
+	background-position: center;
+	z-index: -1;
 }
 
 
-input[type=submit] {
-	border: 4px solid #9fc3cc;
-	color: black;
-	background-color: white;
-	border-radius: 4px;
-	font-size: 20px;
-}
-
-input[type=submit] :hover {
-	
-}

@@ -10,14 +10,14 @@
 </head>
 
 <body>
-	<div class=div_sora_direita></div>
-	<div class=div_sora> </div>
+	<div class=div_gata_sora__direita></div>
+	<div class=div_gata_sora__esquerda> </div>
 	<br/>
-	<div align="center"	class=login>
+	<div align="center"	class=div_login>
 		<form method="post" action="visualizarExemplar" style="color: white; vertical-align:text-bottom">
 		<!-- Lembar de tentar colocar display size max para centralizar na tela -->
-			<h1>Login Aluno</h1>
-			<table class="table_round">
+			<h1 class=h1_titulo>Login Aluno</h1>
+			<table>
 				<tr>
 					<td>
 						<label for="login">Login: </label>
@@ -30,8 +30,8 @@
 					<td>
 						<label for="senha">Senha: </label>
 					</td>
-					<td colspan="3">
-						<input type="text" placeholder="Sua senha" name="senha" value='<c:out value="${aluno.senha }"/>'>
+					<td colspan="4">
+						<input type="password" placeholder="Sua senha" name="senha" value='<c:out value="${aluno.senha }"/>'>
 					</td>
 				</tr>
 				<tr>
