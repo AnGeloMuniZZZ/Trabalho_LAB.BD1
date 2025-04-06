@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
 						<label for="senha">Senha: </label>
 					</td>
 					<td colspan="3">
-						<input type="text" placeholder="Sua senha" name="senha" value='<c:out value="${administrador.senha }"/>'>
+						<input type="password" placeholder="Sua senha" name="senhalogin" value='<c:out value="${administrador.senha }"/>'>
 					</td>
 				</tr>
 				<tr>
@@ -44,9 +45,9 @@
 		</form>
 		
 		<!-- A função inserir administrador será oculta na tela, colocada aqui apenas para testes -->
-		<button style="backgrond-color: rgb(51,51,51); width: 20%; height: 20%"
-			 onclick="document.getElementById(Iadm).style.visibility='visible'"></button>
-		<div style="visibility: hidden">
+		<button style="backgrond-color: rgb(51,51,51); width: 50px; height: 50px"
+			 onclick="document.getElementById(Iadm).style.visibility='visible'" value="ola"></button>
+		<div >
 			<form action="loginAdministrador" method="post">
 				<table>
 					<tr style="border-bottom: solid white 12px;">

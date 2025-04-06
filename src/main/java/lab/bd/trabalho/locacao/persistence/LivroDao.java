@@ -127,5 +127,18 @@ public class LivroDao implements ICrudExDao<Livro>{
 		con.close();
 		return livros;
 	}
+	
+	public char descobrirSigla(Livro l) throws ClassNotFoundException, SQLException {
+		Connection con = gDao.getConnection();
+		String sql = "{CALL descobrir_tipo_isbn_issn_por_codigo(?, ?)}";
+		CallableStatement cs = con.prepareCall(sql);
+		cs.setInt(1, l.getExemplarcodigo());
+		cs.registerOutParameter(2, Types.CHAR);
+		cs.execute();
+		char saida = cs.getString(8).charAt(0);
+		cs.close();
+		con.close();
+		return saida;
+	}
 
 }

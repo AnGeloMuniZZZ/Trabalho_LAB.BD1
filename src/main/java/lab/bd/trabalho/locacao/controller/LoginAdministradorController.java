@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import lab.bd.trabalho.locacao.model.Aluno;
+import lab.bd.trabalho.locacao.model.Administrador;
 import lab.bd.trabalho.locacao.persistence.AdministradorDao;
 
 @Controller
 public class LoginAdministradorController {
 
+	protected Administrador atual = new Administrador();
+	
 	@Autowired
 	private AdministradorDao aDao;
 	
@@ -27,14 +29,16 @@ public class LoginAdministradorController {
 	
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.POST)
 	public ModelAndView alunoPost(@RequestParam Map<String, String> params, ModelMap model) {
-		String cpf = params.get("cpf");
-		String nome = params.get("nome_completo");
+		String codigo = params.get("codigo");
+		String nome = params.get("nome");
+		String usuario = params.get("usuario");
 		String senha = params.get("senha");
 		String cmd = params.get("botao");
 		
-		Aluno a = new Aluno();
-		a.setCpf(cpf);
-		a.setNome_completo(nome);
+		Administrador a = new Administrador();
+		a.setCodigo(Integer.parseInt(codigo));
+		a.setNome(nome);
+		a.setUsuario(usuario);
 		a.setSenha(senha);
 		
 		String saida = "";
@@ -43,10 +47,9 @@ public class LoginAdministradorController {
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
 				saida = aDao.inserir(a);
-				//Criação da variavel aTemp para retirada dos campos RA e email, que eram apenas tradados no SQL
-				Aluno aTemp = aDao.buscar(a);
-				a.setEmail(aTemp.getEmail());
-				a.setRa(aTemp.getRa());
+			}
+			else if (cmd.equalsIgnoreCase("Logar")) {
+				atual = aDao.realizarLogin(a);
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
@@ -54,10 +57,10 @@ public class LoginAdministradorController {
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
-		model.addAttribute("aluno", a);
+		model.addAttribute("administrador", a);
 		
 		return new ModelAndView("loginAdministrador");
 	}
 }
 
-}
+

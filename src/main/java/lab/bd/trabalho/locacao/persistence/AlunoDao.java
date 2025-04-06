@@ -12,10 +12,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import lab.bd.trabalho.locacao.model.Administrador;
 import lab.bd.trabalho.locacao.model.Aluno;
 
 @Repository
-public class AlunoDao implements ICrudDao<Aluno> {
+public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 
 	@Autowired
 	private ConnectionDao gDao;
@@ -95,6 +96,33 @@ public class AlunoDao implements ICrudDao<Aluno> {
 		ps.close();
 		con.close();
 		return alunos;
+	}
+	
+	@Override
+	public Aluno realizarLogin(Aluno a) throws ClassNotFoundException, SQLException {
+		Connection con = gDao.getConnection();
+		String sql = "{CALL realizar_login_adm(?, ?, ?)}";
+		CallableStatement cs = con.prepareCall(sql);
+		cs.setString(1, a.getEmail());
+		cs.setString(2, a.getSenha());
+		cs.registerOutParameter(3, Types.VARCHAR);
+		cs.execute();
+		String sql2 = "SELECT cpf, ra, nome_completo, email, senha FROM Aluno WHERE cpf LIKE ?";
+		PreparedStatement ps = con.prepareStatement(sql2);
+		ps.setInt(1, Integer.parseInt(cs.getString(3)));
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			a.setCpf(rs.getString("cpf"));
+			a.setRa(rs.getString("ra"));
+			a.setNome_completo(rs.getString("nome_completo"));
+			a.setEmail(rs.getString("email"));
+			a.setSenha(rs.getString("senha"));
+		}
+		cs.close();
+		rs.close();
+		ps.close();
+		con.close();
+		return a;
 	}
 
 }

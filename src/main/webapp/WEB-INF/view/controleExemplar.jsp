@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,7 +47,10 @@
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
-					<td><input style="margin: 0 2px;" type="submit" name="botao" value="listar" class="btn btn-dark"><td/>
+                    <td><input type="submit" name="botao" value="Inserir" class="btn btn-success w-100"></td>
+                    <td><input type="submit" name="botao" value="Atualizar" class="btn btn-primary w-100"></td>
+                    <td><input type="submit" name="botao" value="Excluir" class="btn btn-danger w-100"></td>
+                    <td><input type="submit" name="botao" value="Listar" class="btn btn-warning w-100"></td>
 				</tr>
 			</table>
 		</form>
@@ -78,7 +82,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="e" items="${exemplares }">
+					<c:forEach var="l" items="${livros }">
 						<tr>
 							<td>${e.codigo_exemplar }</td>
 							<td>${e.administrador_codigo }</td>
@@ -86,8 +90,20 @@
 							<td>${e.qtd_paginas }</td>
 							<td>${e.codI }</td>
 							<td>${e.edicao }</td>
-							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${e.codigo_exemplar}">EDITAR</a></td>
-							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${e.codigo_exemplar}">EXCLUIR</a></td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.exemplarcodigo}">EDITAR</a></td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.exemplarcodigo}">EXCLUIR</a></td>
+						</tr>
+					</c:forEach>
+					<c:forEach var="r" items="${revistas }">
+						<tr>
+							<td>${r.codigo_exemplar }</td>
+							<td>${r.administrador_codigo }</td>
+							<td>${r.nome }</td>
+							<td>${r.qtd_paginas }</td>
+							<td>${r.codI }</td>
+							<td></td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.exemplarcodigo}">EDITAR</a></td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.exemplarcodigo}">EXCLUIR</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

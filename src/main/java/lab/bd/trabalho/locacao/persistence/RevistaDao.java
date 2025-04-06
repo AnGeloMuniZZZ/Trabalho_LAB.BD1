@@ -126,4 +126,5 @@ public class RevistaDao implements ICrudExDao<Revista> {
 		con.close();
 		return revistas;
 	}
+
 }
