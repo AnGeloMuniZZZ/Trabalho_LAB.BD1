@@ -1,25 +1,22 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Controle de Exemplares</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
 </head>
 <body>
 		<div class="conteiner" align="center">
 		<h1>Controle de Exemplares</h1>
 		<!-- Usando exemplar para mostrar que ambos livro e revista podem ser inseridos -->
-		<form action="exemplar" method="post">
+		<form action="controleExemplar" method="post">
 			<table>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="3">
-						<input type="number" min="0" step="1" name="cod" id="cod" placeholder="Código" value='<c:out value="${exemplar.codigo_exemplar }"/>'>
+						<input type="number" name="codigo_exemplar" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'>
 					</td>
 					<td>
 						<input type="submit" name="botao" value="buscar" class="btn btn-dark">
@@ -27,23 +24,27 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="nome" id="nome" placeholder="nome" value='<c:out value="${exemplar.nome }"/>'>
+						<input type="text" name="codAdm" id="nome" placeholder="nome" value='<c:out value="${livro.codAdm }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="number" name="qtdPaginas" id="qtdPaginas" value='<c:out value="${exemplar.qtdPaginas }"/>'>
+						<input type="text" name="nome" id="nome" placeholder="nome" value='<c:out value="${livro.nome }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-					<!-- Fazendo um campo para receber o issn ou isbn -->
-						<input type="number" name="siglaExemplar" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${exemplar.codI }"/>'>
+						<input type="number" name="qtdPaginas" id="qtdPaginas" value='<c:out value="${livro.qtdPaginas }"/>'>
+					</td>
+				</tr>
+				<tr style="border-bottom: solid white 12px;">
+					<td colspan="4">
+						<input type="number" name="siglaExemplar" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.isbn }"/>'>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${exemplar.edicao }'/>">
+						<input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${livro.edicao }'/>">
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
@@ -67,7 +68,7 @@
 		</c:if>
 	</div>
 	<div class="conteiner" align="center">
-		<c:if test="${not empty exemplares }">
+		<c:if test="${not empty livros || not empty revistas }">
 			<table class=""table table-dark table-striped-columns>
 				<thead>
 					<tr>
@@ -111,4 +112,5 @@
 		</c:if>
 	</div>
 </body>
+
 </html>

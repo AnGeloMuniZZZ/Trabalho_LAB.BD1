@@ -11,11 +11,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Exemplar {
+public class Exemplar {
 	
-	private int codigo_exemplar;
-	private int administrador_codigo;
-	private String nome;
-	private int qtd_paginas;
+	protected int codigo_exemplar;
+	protected int administrador_codigo;
+	protected String nome;
+	protected int qtd_paginas;
 
 }

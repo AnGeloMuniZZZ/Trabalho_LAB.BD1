@@ -1,18 +1,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>Login Administrador</title>
 </head>
 <body style="background-color: rgb(51,51,51)">
 	<div align="center" class="login">
-		<form method="post" action="controleExemplar" style="color: white; vertical-align:text-bottom">
+		<form method="post" action="loginAdministrador" style="color: white; vertical-align:text-bottom">
 		<!-- Lembar de tentar colocar display size max para centralizar na tela -->
 			<h1>Login Administrador</h1>
 			<table>
@@ -43,6 +41,14 @@
 				</tr>
 			</table>
 		</form>
+		
+		<div>
+			<c:if test="${administrador.validar != 0 }">
+				<h1>Logado com sucesso!!!</h1>
+				<a href="controleExemplar">Fazer controle dos exemplares</a>
+				<a href="controleAluno">Fazer controle dos alunos</a>
+			</c:if>
+		</div>
 		
 		<!-- A função inserir administrador será oculta na tela, colocada aqui apenas para testes -->
 		<button style="backgrond-color: rgb(51,51,51); width: 50px; height: 50px"

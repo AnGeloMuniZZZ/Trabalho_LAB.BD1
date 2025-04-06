@@ -14,16 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 import lab.bd.trabalho.locacao.model.Administrador;
 import lab.bd.trabalho.locacao.persistence.AdministradorDao;
 
+
 @Controller
 public class LoginAdministradorController {
-
-	protected Administrador atual = new Administrador();
 	
 	@Autowired
 	private AdministradorDao aDao;
 	
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.GET)
 	public ModelAndView administradorGet(@RequestParam Map<String, String> params, ModelMap model) {
+		Administrador a = new Administrador();
+		
+		model.addAttribute("administrador", a);
 		return new ModelAndView("loginAdministrador");
 	}
 	
@@ -35,25 +37,29 @@ public class LoginAdministradorController {
 		String senha = params.get("senha");
 		String cmd = params.get("botao");
 		
-		Administrador a = new Administrador();
-		a.setCodigo(Integer.parseInt(codigo));
-		a.setNome(nome);
-		a.setUsuario(usuario);
-		a.setSenha(senha);
-		
+		Administrador a;
 		String saida = "";
 		String erro = "";
 		
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
+				a  = new Administrador();
+				a.setCodigo(Integer.parseInt(codigo));
+				a.setNome(nome);
+				a.setUsuario(usuario);
+				a.setSenha(senha);
 				saida = aDao.inserir(a);
 			}
 			else if (cmd.equalsIgnoreCase("Logar")) {
-				atual = aDao.realizarLogin(a);
+				a = new Administrador(0,"",usuario,senha,0);
+				a.setValidar(aDao.realizarLogin(a));
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			erro = e.getMessage();
+		} finally {
+			a = null;
+			
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);

@@ -37,7 +37,7 @@ public class AdministradorDao implements ICrudInserirDao<Administrador>, ICrudLo
 	}
 
 	@Override
-	public Administrador realizarLogin(Administrador a) throws ClassNotFoundException, SQLException {
+	public int realizarLogin(Administrador a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
 		String sql = "{CALL realizar_login_adm(?, ?, ?)}";
 		CallableStatement cs = con.prepareCall(sql);
@@ -45,21 +45,10 @@ public class AdministradorDao implements ICrudInserirDao<Administrador>, ICrudLo
 		cs.setString(2, a.getSenha());
 		cs.registerOutParameter(3, Types.INTEGER);
 		cs.execute();
-		String sql2 = "SELECT codigo, nome, usuario, senha FROM Administrador WHERE codigo LIKE ?";
-		PreparedStatement ps = con.prepareStatement(sql2);
-		ps.setInt(1, Integer.parseInt(cs.getString(3)));
-		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-			a.setCodigo(Integer.parseInt(rs.getString("codigo")));
-			a.setNome(rs.getString("nome"));
-			a.setUsuario(rs.getString("usuario"));
-			a.setSenha(rs.getString("senha"));
-		}
+		int v = Integer.parseInt(cs.getString(3));
 		cs.close();
-		rs.close();
-		ps.close();
 		con.close();
-		return a;
+		return v;
 	}
 	
 }

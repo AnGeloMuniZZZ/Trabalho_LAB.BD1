@@ -99,7 +99,7 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 	}
 	
 	@Override
-	public Aluno realizarLogin(Aluno a) throws ClassNotFoundException, SQLException {
+	public int realizarLogin(Aluno a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
 		String sql = "{CALL realizar_login_adm(?, ?, ?)}";
 		CallableStatement cs = con.prepareCall(sql);
@@ -107,22 +107,10 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 		cs.setString(2, a.getSenha());
 		cs.registerOutParameter(3, Types.VARCHAR);
 		cs.execute();
-		String sql2 = "SELECT cpf, ra, nome_completo, email, senha FROM Aluno WHERE cpf LIKE ?";
-		PreparedStatement ps = con.prepareStatement(sql2);
-		ps.setInt(1, Integer.parseInt(cs.getString(3)));
-		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-			a.setCpf(rs.getString("cpf"));
-			a.setRa(rs.getString("ra"));
-			a.setNome_completo(rs.getString("nome_completo"));
-			a.setEmail(rs.getString("email"));
-			a.setSenha(rs.getString("senha"));
-		}
+		int v = Integer.parseInt(cs.getString(3));
 		cs.close();
-		rs.close();
-		ps.close();
 		con.close();
-		return a;
+		return v;
 	}
 
 }
