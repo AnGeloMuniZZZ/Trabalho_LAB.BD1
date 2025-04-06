@@ -16,7 +16,7 @@ CREATE TABLE Administrador(
 codigo INTEGER NOT NULL PRIMARY KEY,
 nome VARCHAR(180) NOT NULL,
 usuario VARCHAR(80) NOT NULL,
-senha VARCHAR(20) NOT NULL
+senha VARCHAR(40) NOT NULL
 )
 GO
 
@@ -473,7 +473,7 @@ END
 GO
 
 -- Valida a existencia de um LOGIN de um ADMINISTRADOR
-CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(8), @validacao BIT OUTPUT) AS
+CREATE PROCEDURE realizar_login_adm (@login VARCHAR(80), @senha VARCHAR(40), @validacao BIT OUTPUT) AS
 IF(EXISTS (SELECT usuario, senha FROM Administrador WHERE usuario = @login AND senha = @senha)) BEGIN
 	SET @validacao = 1
 END
@@ -539,7 +539,7 @@ AS
 GO
 
 -- INSERIR ADMINISTRADOR no banco
-CREATE PROCEDURE controle_inserir_administrador(@codigo INTEGER, @nome VARCHAR(180), @usuario VARCHAR(80), @senha VARCHAR(8), @saida VARCHAR(100) OUTPUT) AS
+CREATE PROCEDURE controle_inserir_administrador(@codigo INTEGER, @nome VARCHAR(180), @usuario VARCHAR(80), @senha VARCHAR(40), @saida VARCHAR(100) OUTPUT) AS
 
 DECLARE @codigo_duplicata BIT
 DECLARE @erro VARCHAR(200)
@@ -859,11 +859,23 @@ GO
 --Funcao: controle_inserir_administrador
 --Teste 1 (Inserir um Administrador valido)
 DECLARE @test1_encontrar_adm VARCHAR(100)
-EXEC controle_inserir_administrador 54, 'Luan Drocolebati', 'adm54', 'asenhalongaatacanovamente', @test1_encontrar_adm OUTPUT
+EXEC controle_inserir_administrador 54, 'Luan Drocolebati', 'adm54', 'ASenhaLongaAtacaNovamente', @test1_encontrar_adm OUTPUT
 PRINT(@test1_encontrar_adm)
 SELECT * FROM Administrador WHERE codigo = 54
 GO
 
--------------------------------------------------------------------------------- CRIANDO NOVA FUNCAO ----------------------------------------------------------------------------
 
 
+
+/* DROPAAAAA TUDO!!!!
+USE master
+DROP DATABASE LocacaoLivros
+*/
+
+s
+SELECT * FROM Aluno
+SELECT * FROM Administrador
+SELECT * FROM Exemplar
+SELECT * FROM Livro
+SELECT * FROM Revista
+SELECT * FROM Locacao
