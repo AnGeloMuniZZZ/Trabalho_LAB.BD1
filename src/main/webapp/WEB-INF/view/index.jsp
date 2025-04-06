@@ -10,16 +10,11 @@
 </head>
 
 <body>
-
-
 	<div class=div_sora_direita></div>
-	
 	<div class=div_sora> </div>
-	
-	<br />
-
-	<div align="center"	>
-		<form method="post" action="aluno" style="color: white; vertical-align:text-bottom">
+	<br/>
+	<div align="center"	class=login>
+		<form method="post" action="visualizarExemplar" style="color: white; vertical-align:text-bottom">
 		<!-- Lembar de tentar colocar display size max para centralizar na tela -->
 			<h1>Login Aluno</h1>
 			<table class="table_round">
@@ -47,7 +42,7 @@
 						<a href="cadastroAluno">Cadastrar</a>
 					</td>
 					<td>
-						<a href="administrador">Entrar como Administrador</a>
+						<a href="loginAdministrador">Entrar como Administrador</a>
 						<!-- Diniuir botao e tamanho fonte, se der deixar ele arredondado -->
 					</td>
 				</tr>

@@ -4,7 +4,9 @@ body {
 	background-color: rgb(51,51,51);
 }
 
-
+.div_login {
+	margin-top: 30px;
+}
 
 .div_retangulo {
 	position: fixed;

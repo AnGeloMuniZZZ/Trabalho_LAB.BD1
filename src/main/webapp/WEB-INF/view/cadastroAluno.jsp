@@ -35,9 +35,13 @@
 				</tr>
 			</table>
 		</form>
-		<h2>Seu nome de usuário é: ${aluno.email }</h2>
-		<h2>Seu ra é: ${aluno.ra }</h2>
+		<!-- Hidden -->
+		<div>
+			<h2>Seu nome de usuário é: ${aluno.email }</h2>
+			<h2>Seu ra é: ${aluno.ra }</h2>
+		</div>
 		<a href="index">Voltar ao login</a>
+		
 	</div>
 	<div class="conteiner" align="center">
 		<c:if test="${not empty saida }">
