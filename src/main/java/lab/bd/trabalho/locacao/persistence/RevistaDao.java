@@ -93,6 +93,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 			r.setAdministrador_codigo(rs.getInt("Administrador_codigo"));
 			r.setNome(rs.getString("nome"));
 			r.setQtd_paginas(rs.getInt("qtd_paginas"));
+			//codigo do exemplar duplicado
 			r.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
 			r.setIssn(rs.getString("isbn"));
 		}

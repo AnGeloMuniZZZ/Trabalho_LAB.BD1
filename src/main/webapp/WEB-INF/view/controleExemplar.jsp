@@ -36,13 +36,16 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="email" id="email" placeholder="email" value='<c:out value="${pessoa.email }"/>'>
+					<!-- Fazendo um campo para receber o issn ou isbn -->
+						<input type="number" name="siglaExemplar" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${exemplar.codI }"/>'>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${exemplar.edicao }'/>">
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
-					<td><input style="margin: 0 2px;" type="submit" name="botao" value="inserir" class="btn btn-dark"><td/>
-					<td><input style="margin: 0 2px;" type="submit" name="botao" value="deletar" class="btn btn-dark"><td/>
-					<td><input style="margin: 0 2px;" type="submit" name="botao" value="atualizar" class="btn btn-dark"><td/>
 					<td><input style="margin: 0 2px;" type="submit" name="botao" value="listar" class="btn btn-dark"><td/>
 				</tr>
 			</table>
@@ -60,27 +63,31 @@
 		</c:if>
 	</div>
 	<div class="conteiner" align="center">
-		<c:if test="${not empty pessoas }">
+		<c:if test="${not empty exemplares }">
 			<table class=""table table-dark table-striped-columns>
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Codigo Exemplar</th>
+						<th>Codigo Administrador</th>
 						<th>Nome</th>
-						<th>Nascimento</th>
-						<th>Email</th>
+						<th>Qtd. Páginas</th>
+						<th>ISSN/ISBN</th>
+						<th>Edição(Livro)</th>
 						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="p" items="${pessoas }">
+					<c:forEach var="e" items="${exemplares }">
 						<tr>
-							<td>${p.id }</td>
-							<td>${p.nome }</td>
-							<td>${p.dtNasc }</td>
-							<td>${p.email }</td>
-							<td><a href="${pageContext.request.contextPath }/pessoa?acao=editar&id=${p.id}">EDITAR</a></td>
-							<td><a href="${pageContext.request.contextPath }/pessoa?acao=excluir&id=${p.id}">EXCLUIR</a></td>
+							<td>${e.codigo_exemplar }</td>
+							<td>${e.administrador_codigo }</td>
+							<td>${e.nome }</td>
+							<td>${e.qtd_paginas }</td>
+							<td>${e.codI }</td>
+							<td>${e.edicao }</td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${e.codigo_exemplar}">EDITAR</a></td>
+							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${e.codigo_exemplar}">EXCLUIR</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
