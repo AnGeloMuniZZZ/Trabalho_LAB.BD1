@@ -11,6 +11,13 @@ public class ConnectionDao {
 
 	private Connection c;
 
+	/**
+	 * Funcao que realiza a conexao com o banco de dados sql
+	 * 
+	 * @return Um conexao com o banco de dados SQL
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 
 		String hostName = "localhost";//"DESKTOP-GH1LJAD";
