@@ -13,7 +13,7 @@
 <body style="background-color: rgb(51,51,51)">
 	<div>
 		<h1>Cadastro de Aluno</h1>
-		<form action="aluno" method="post">
+		<form action="cadastroAluno" method="post">
 			<table>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
@@ -22,12 +22,12 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="nome" id="nome" placeholder="Nome completo" value='<c:out value="${aluno.nome_completo }"/>'>
+						<input type="text" name="nome_completo" id="nome" placeholder="Nome completo" value='<c:out value="${aluno.nome_completo }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="senha" id="senha" value='<c:out value="${aluno.senha }"/>'>
+						<input type="text" name="senha" id="senha" placeholder="Senha" value='<c:out value="${aluno.senha }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
@@ -35,9 +35,9 @@
 				</tr>
 			</table>
 		</form>
-		<h2>Seu nome de usuário é: <c:out value="${aluno.email }"/></h2>
-		<h2>Seu ra é: <c:out value="${aluno.ra } "/></h2>
-		<input type="button" name="voltar" id="voltar" onclick="location.href='locacao'" value="Voltar ao login">
+		<h2>Seu nome de usuário é: ${aluno.email }</h2>
+		<h2>Seu ra é: ${aluno.ra }</h2>
+		<a href="index">Voltar ao login</a>
 	</div>
 	<div class="conteiner" align="center">
 		<c:if test="${not empty saida }">

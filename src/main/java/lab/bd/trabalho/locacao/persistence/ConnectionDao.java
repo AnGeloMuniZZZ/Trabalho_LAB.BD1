@@ -20,7 +20,7 @@ public class ConnectionDao {
 	 */
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 
-		String hostName = "localhost";//"DESKTOP-GH1LJAD";
+		String hostName = "DESKTOP-GH1LJAD";
 		String dbName = "LocacaoLivros";
 		String user = "sa";
 		String senha = "senha123";

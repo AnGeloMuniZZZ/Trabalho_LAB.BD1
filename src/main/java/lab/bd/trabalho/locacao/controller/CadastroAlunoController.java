@@ -24,27 +24,7 @@ public class CadastroAlunoController {
 	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.GET)
 	public ModelAndView alunoGet(@RequestParam Map<String, String> params, ModelMap model) {
-		String acao = params.get("acao");
-		String cpf = params.get("id");
-		Aluno a = new Aluno();
-		List<Aluno> alunos = new ArrayList<>();
-		String erro = "";
-		try {
-			if (cpf != null && !cpf.isBlank()) {
-				a.setCpf(cpf);
-				if (acao.equals("editar")) {
-					a = aDao.buscar(a);
-					alunos = null;
-				}
-			}
-		} catch (SQLException | ClassNotFoundException e) {
-			e.getMessage();
-		} finally {
-			model.addAttribute("erro", erro);
-			model.addAttribute("aluno", a);
-			model.addAttribute("alunos", alunos);
-		}
-		return new ModelAndView("alunos");
+		return new ModelAndView("cadastroAluno");
 	}
 	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.POST)
@@ -55,15 +35,12 @@ public class CadastroAlunoController {
 		String cmd = params.get("botao");
 		
 		Aluno a = new Aluno();
-		if (cmd.contentEquals("inserir")) {
-			a.setCpf(cpf);
-			a.setNome_completo(nome);
-			a.setSenha(senha);
-		}
+		a.setCpf(cpf);
+		a.setNome_completo(nome);
+		a.setSenha(senha);
 		
 		String saida = "";
 		String erro = "";
-		List<Aluno> alunos = new ArrayList<Aluno>();
 		
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
@@ -76,19 +53,11 @@ public class CadastroAlunoController {
 
 		} catch (SQLException | ClassNotFoundException e) {
 			erro = e.getMessage();
-		} finally {
-			if (!cmd.equalsIgnoreCase("Buscar")) {
-				a = null;
-			}
-			if (!cmd.equalsIgnoreCase("Listar")) {
-				alunos = null;
-			}
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
 		model.addAttribute("aluno", a);
-		model.addAttribute("alunos", alunos);
 		
-		return new ModelAndView("aluno");
+		return new ModelAndView("cadastroAluno");
 	}
 }
