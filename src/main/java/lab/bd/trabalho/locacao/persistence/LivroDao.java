@@ -150,4 +150,25 @@ public class LivroDao implements ICrudExDao<Livro>{
 		return saida;
 	}
 
+	/**
+	 * Envia uma Entidade e com base nos seus atributos (chave primaria) 
+	 * descobre se é um (L)ivro ou (R)evista
+	 * 
+	 * @param Livro l
+	 * @return Um Char L ou R
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public String descobrirSiglaPorCodigo(Livro l) throws ClassNotFoundException, SQLException {
+		Connection con = gDao.getConnection();
+		String sql = "{CALL descobrir_tipo_isbn_issn_por_codigo (?, ?)}";
+		CallableStatement cs = con.prepareCall(sql);
+		cs.setInt(1, l.getCodigo_exemplar());
+		cs.registerOutParameter(2, Types.CHAR);
+		cs.execute();
+		String saida = cs.getString(2);
+		cs.close();
+		con.close();
+		return saida;
+	}
 }

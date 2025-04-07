@@ -41,7 +41,7 @@ public class ControleExemplarController {
 				l.setExemplarcodigo(Integer.parseInt(exemplarcodigo));
 				// Verificar se é um livro ou revista pelo codigo do exemplar usando o codigo de
 				// exemplar
-				String verifica = lDao.descobrirSigla(l);
+				String verifica = lDao.descobrirSiglaPorCodigo(l);
 				if (verifica.equals("L")) {
 					if (acao.equals("excluir")) {
 						lDao.excluir(l);
@@ -66,6 +66,11 @@ public class ControleExemplarController {
 			e.getMessage();
 		} finally {
 			model.addAttribute("erro", erro);
+			if (l == null) {
+				model.addAttribute("edicao", 0);
+			} else {
+				model.addAttribute("edicao", l.getEdicao());
+			}
 			model.addAttribute("livro", l);
 			model.addAttribute("livros", livros);
 			model.addAttribute("revista", r);
@@ -116,39 +121,45 @@ public class ControleExemplarController {
 			}
 			// Verificar se é um livro ou revista pelo codigo do exemplar usando o issn ou
 			// isbn
-			String verifica = lDao.descobrirSigla(l);
-			if (verifica.equals("L")) {
-				if (cmd.equalsIgnoreCase("Inserir")) {
-					saida = lDao.inserir(l);
-				}
-				if (cmd.equalsIgnoreCase("Excluir")) {
-					saida = lDao.excluir(l);
-				}
+			if (cmd.equalsIgnoreCase("Buscar") || cmd.equalsIgnoreCase("Excluir")) {
+				String verifica = lDao.descobrirSiglaPorCodigo(l);
+				if (verifica.equals("L")) {
+					if (cmd.equalsIgnoreCase("Buscar")) {
+						l = lDao.buscar(l);
+					}
+					if (cmd.equalsIgnoreCase("Excluir")) {
+						saida = lDao.excluir(l);
+					}
 
-				if (cmd.equalsIgnoreCase("Atualizar")) {
-					saida = lDao.atualizar(l);
+				} else {
+					if (cmd.equalsIgnoreCase("Buscar")) {
+						r = rDao.buscar(r);
+					}
+					if (cmd.equalsIgnoreCase("Excluir")) {
+						saida = rDao.excluir(r);
+					}
 				}
+			} else if(cmd.equalsIgnoreCase("Inserir") || cmd.equalsIgnoreCase("Atualizar")){
+				String verifica = lDao.descobrirSigla(l);
+				if (verifica.equals("L")) {
+					if (cmd.equalsIgnoreCase("Inserir")) {
+						saida = lDao.inserir(l);
+					}
 
-				if (cmd.equalsIgnoreCase("Buscar")) {
-					l = lDao.buscar(l);
-				}
+					if (cmd.equalsIgnoreCase("Atualizar")) {
+						saida = lDao.atualizar(l);
+					}
 
-			} else {
+				} else {
 
-				if (cmd.equalsIgnoreCase("Inserir")) {
-					saida = rDao.inserir(r);
-				}
-				if (cmd.equalsIgnoreCase("Excluir")) {
-					saida = rDao.excluir(r);
-				}
+					if (cmd.equalsIgnoreCase("Inserir")) {
+						saida = rDao.inserir(r);
+					}
 
-				if (cmd.equalsIgnoreCase("Atualizar")) {
-					saida = rDao.atualizar(r);
+					if (cmd.equalsIgnoreCase("Atualizar")) {
+						saida = rDao.atualizar(r);
+					}
 				}
-				if (cmd.equalsIgnoreCase("Buscar")) {
-					r = rDao.buscar(r);
-				}
-
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {

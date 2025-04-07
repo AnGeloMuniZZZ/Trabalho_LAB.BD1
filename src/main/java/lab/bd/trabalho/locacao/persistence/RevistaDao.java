@@ -95,7 +95,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 			r.setQtd_paginas(rs.getInt("qtd_paginas"));
 			//codigo do exemplar duplicado
 			r.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			r.setSigla(rs.getString("isbn"));
+			r.setSigla(rs.getString("issn"));
 		}
 		rs.close();
 		ps.close();
@@ -107,7 +107,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 	public List<Revista> listar() throws ClassNotFoundException, SQLException {
 		List<Revista> revistas = new ArrayList<Revista>();
 		Connection con = gDao.getConnection();
-		String sql = "SELECT codigo_exemplar, Administrador_codigo, nome, qtd_paginas, ExemplarCodigo, isbn, edicao FROM Exemplar, Revista "
+		String sql = "SELECT codigo_exemplar, Administrador_codigo, nome, qtd_paginas, ExemplarCodigo, issn FROM Exemplar, Revista "
 				+ "WHERE codigo_exemplar = ExemplarCodigo";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
@@ -118,7 +118,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 			revista.setNome(rs.getString("nome"));
 			revista.setQtd_paginas(rs.getInt("qtd_paginas"));
 			revista.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			revista.setSigla(rs.getString("isbn"));
+			revista.setSigla(rs.getString("issn"));
 			revistas.add(revista);
 		}
 		rs.close();
