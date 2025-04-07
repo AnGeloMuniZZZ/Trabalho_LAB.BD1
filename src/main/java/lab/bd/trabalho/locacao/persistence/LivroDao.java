@@ -86,7 +86,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 		String sql = "SELECT codigo_exemplar, Administrador_codigo, nome, qtd_paginas, ExemplarCodigo, isbn, edicao FROM Exemplar, Livro "
 				+ "WHERE codigo_exemplar = ExemplarCodigo AND codigo_exemplar LIKE ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, l.getCodigo_exemplar());
+		ps.setInt(1, l.getExemplarcodigo());
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			l.setCodigo_exemplar(rs.getInt("codigo_exemplar"));
@@ -129,7 +129,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 	}
 	
 	/**
-	 * Envia uma Entidade e com base nos seus atributos (chave prrimaria) 
+	 * Envia uma Entidade e com base nos seus atributos (issn ou isbn) 
 	 * descobre se é um (L)ivro ou (R)evista
 	 * 
 	 * @param Livro l
@@ -137,14 +137,14 @@ public class LivroDao implements ICrudExDao<Livro>{
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public char descobrirSigla(Livro l) throws ClassNotFoundException, SQLException {
+	public String descobrirSigla(Livro l) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
-		String sql = "{CALL descobrir_tipo_isbn_issn_por_codigo(?, ?)}";
+		String sql = "{CALL descobrir_tipo_isbn_issn(?, ?)}";
 		CallableStatement cs = con.prepareCall(sql);
-		cs.setInt(1, l.getExemplarcodigo());
+		cs.setString(1, l.getSigla());
 		cs.registerOutParameter(2, Types.CHAR);
 		cs.execute();
-		char saida = cs.getString(8).charAt(0);
+		String saida = cs.getString(2);
 		cs.close();
 		con.close();
 		return saida;

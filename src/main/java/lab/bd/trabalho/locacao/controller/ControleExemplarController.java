@@ -27,7 +27,7 @@ public class ControleExemplarController {
 	private RevistaDao rDao;
 
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.GET)
-	public ModelAndView pessoaGet(@RequestParam Map<String, String> params, ModelMap model) {
+	public ModelAndView controleExemplarGet(@RequestParam Map<String, String> params, ModelMap model) {
 		String acao = params.get("acao");
 		String exemplarcodigo = params.get("id");
 		Livro l = new Livro();
@@ -41,8 +41,8 @@ public class ControleExemplarController {
 				l.setExemplarcodigo(Integer.parseInt(exemplarcodigo));
 				// Verificar se é um livro ou revista pelo codigo do exemplar usando o codigo de
 				// exemplar
-				char verifica = lDao.descobrirSigla(l);
-				if (verifica == 'L') {
+				String verifica = lDao.descobrirSigla(l);
+				if (verifica.equals("L")) {
 					if (acao.equals("excluir")) {
 						lDao.excluir(l);
 						livros = lDao.listar();
@@ -75,7 +75,7 @@ public class ControleExemplarController {
 	}
 
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.POST)
-	public ModelAndView pessoaPost(@RequestParam Map<String, String> params, ModelMap model) {
+	public ModelAndView controleExemplarPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String codigoExemplar = params.get("codigo_exemplar");
 		String administrador_codigo = params.get("administrador_codigo");
 		String nome = params.get("nome");
@@ -113,35 +113,42 @@ public class ControleExemplarController {
 			if (cmd.equalsIgnoreCase("Listar")) {
 				livros = lDao.listar();
 				revistas = rDao.listar();
-			} else {
-				// Como no banco é feita a diferenciação aqui o objeto será passado como livro
+			}
+			// Verificar se é um livro ou revista pelo codigo do exemplar usando o issn ou
+			// isbn
+			String verifica = lDao.descobrirSigla(l);
+			if (verifica.equals("L")) {
 				if (cmd.equalsIgnoreCase("Inserir")) {
 					saida = lDao.inserir(l);
 				}
 				if (cmd.equalsIgnoreCase("Excluir")) {
 					saida = lDao.excluir(l);
 				}
-				// Verificar se é um livro ou revista pelo codigo do exemplar usando o codigo de
-				// exemplar
-				char verifica = lDao.descobrirSigla(l);
-				if (verifica == 'L') {
 
-					if (cmd.equalsIgnoreCase("Atualizar")) {
-						saida = lDao.atualizar(l);
-					}
-
-					if (cmd.equalsIgnoreCase("Buscar")) {
-						l = lDao.buscar(l);
-					}
-
-				} else {
-					if (cmd.equalsIgnoreCase("Atualizar")) {
-						saida = rDao.atualizar(r);
-					}
-					if (cmd.equalsIgnoreCase("Buscar")) {
-						r = rDao.buscar(r);
-					}
+				if (cmd.equalsIgnoreCase("Atualizar")) {
+					saida = lDao.atualizar(l);
 				}
+
+				if (cmd.equalsIgnoreCase("Buscar")) {
+					l = lDao.buscar(l);
+				}
+
+			} else {
+
+				if (cmd.equalsIgnoreCase("Inserir")) {
+					saida = rDao.inserir(r);
+				}
+				if (cmd.equalsIgnoreCase("Excluir")) {
+					saida = rDao.excluir(r);
+				}
+
+				if (cmd.equalsIgnoreCase("Atualizar")) {
+					saida = rDao.atualizar(r);
+				}
+				if (cmd.equalsIgnoreCase("Buscar")) {
+					r = rDao.buscar(r);
+				}
+
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
@@ -158,6 +165,11 @@ public class ControleExemplarController {
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
+		if (l == null) {
+			model.addAttribute("edicao", 0);
+		} else {
+			model.addAttribute("edicao", l.getEdicao());
+		}
 		model.addAttribute("livro", l);
 		model.addAttribute("livro", r);
 		model.addAttribute("livros", livros);

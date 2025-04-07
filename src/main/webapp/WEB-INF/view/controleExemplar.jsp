@@ -36,7 +36,7 @@
 						<td colspan="4"><input type="number" name="sigla" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.sigla }"/>'></td>
 					</tr>
 					<tr>
-						<td><input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${livro.edicao }'/>"></td>
+						<td><input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${edicao }'/>"></td>
 					</tr>
 					
 					<tr style="border-bottom: solid white 12px;">
