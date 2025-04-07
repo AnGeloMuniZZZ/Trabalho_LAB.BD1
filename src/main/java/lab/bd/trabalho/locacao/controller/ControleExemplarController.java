@@ -51,6 +51,7 @@ public class ControleExemplarController {
 					} else if (acao.equals("editar")) {
 						l = lDao.buscar(l);
 						livros = null;
+						model.addAttribute("livro", l);
 					}
 				} else {
 					if (acao.equals("excluir")) {
@@ -60,6 +61,7 @@ public class ControleExemplarController {
 					} else if (acao.equals("editar")) {
 						r = rDao.buscar(r);
 						revistas = null;
+						model.addAttribute("livro", r);
 					}
 				}
 			}
@@ -72,9 +74,7 @@ public class ControleExemplarController {
 			} else {
 				model.addAttribute("edicao", l.getEdicao());
 			}
-			model.addAttribute("livro", l);
 			model.addAttribute("livros", livros);
-			model.addAttribute("livro", r);
 			model.addAttribute("revistas", revistas);
 		}
 		return new ModelAndView("controleExemplar");
@@ -125,7 +125,7 @@ public class ControleExemplarController {
 			// isbn
 			if (cmd.equalsIgnoreCase("Buscar") || cmd.equalsIgnoreCase("Excluir")) {
 				verifica = lDao.descobrirSiglaPorCodigo(l);
-				if (verifica.equals("L")) {	
+				if (verifica.equals("L")) {
 					if (cmd.equalsIgnoreCase("Buscar")) {
 						l = lDao.buscar(l);
 					}
@@ -141,7 +141,7 @@ public class ControleExemplarController {
 						saida = rDao.excluir(r);
 					}
 				}
-			} else if(cmd.equalsIgnoreCase("Inserir") || cmd.equalsIgnoreCase("Atualizar")){
+			} else if (cmd.equalsIgnoreCase("Inserir") || cmd.equalsIgnoreCase("Atualizar")) {
 				verifica = lDao.descobrirSigla(l);
 				if (verifica.equals("L")) {
 					if (cmd.equalsIgnoreCase("Inserir")) {
@@ -168,18 +168,26 @@ public class ControleExemplarController {
 			erro = e.getMessage();
 		} finally {
 			try {
-				verifica = lDao.descobrirSiglaPorCodigo(l);
-				if (verifica.equals("L")) {
-					if (!cmd.equalsIgnoreCase("Buscar")) {
-						l = null;
-						r = null;
-						
+				if (!cmd.equalsIgnoreCase("Listar")) {
+					verifica = lDao.descobrirSiglaPorCodigo(l);
+					if (verifica.equals("L")) {
+						if (!cmd.equalsIgnoreCase("Buscar")) {
+							l = null;
+							r = null;
+							model.addAttribute("livro", l);
+						} else {
+							if (!cmd.equalsIgnoreCase("Buscar")) {
+								l = null;
+								r = null;
+								model.addAttribute("livro", r);
+							}
+						}
 					}
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				erro = e.getMessage();
-			} 
-			
+
+			}
 			if (!cmd.equalsIgnoreCase("Buscar")) {
 				l = null;
 				r = null;
@@ -196,8 +204,6 @@ public class ControleExemplarController {
 		} else {
 			model.addAttribute("edicao", l.getEdicao());
 		}
-		
-		model.addAttribute("livro", r);
 		model.addAttribute("livros", livros);
 		model.addAttribute("revistas", revistas);
 
