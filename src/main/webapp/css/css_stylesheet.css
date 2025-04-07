@@ -2,16 +2,16 @@
 
 body {
 	background: linear-gradient(#3e3e3e, #111111);
-    margin: 0;
-    min-height: 100vh;
-    padding: 0;
+	margin: 0;
+	min-height: 100vh;
+	padding: 0;
 	font-family: Helvetica;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-input{
+input {
 	font-family: Helvetica;
 }
 
@@ -22,7 +22,6 @@ input[type=submit] {
 	background-color: #4f5757;
 	color: white;
 	border: 2.2px solid #4f5757;
-	
 }
 
 input[type=submit]:hover {
@@ -32,59 +31,57 @@ input[type=submit]:hover {
 	transiton-duration: 0.45s;
 }
 
-input[type=submit]:active{
+input[type=submit]:active {
 	color: black;
-	background-color: white; 
+	background-color: white;
 	box-shadow: 0 2px #6f6f6f;
 	transform: translateY(5px);
 }
 
-form{
+form {
 	color: white;
 	vertical-align: text-top;
 }
 
-.h1_titulo{
+.h1_titulo {
 	font-weight: bolder;
 }
 
-.div_h2{
+.div_h2 {
 	text-align: justify;
 }
-
 
 .div_degrade {
 	min-height: 100vh;
 	width: 100%;
 }
 
-
-.h2_mensagem_DADOS{
+.h2_mensagem_DADOS {
 	color: white;
-	justify-content:flex-start;
+	justify-content: flex-start;
 	letter-spacing: normal;
 	font-size: 20px;
 	margin: 2.5px 0;
 }
 
-.h2_mensagem_ERRO{
+.h2_mensagem_ERRO {
 	color: #f52b2b;
 }
 
-.h2_mensagem_VALIDACAO{
+.h2_mensagem_VALIDACAO {
 	color: #70f140;
 }
 
-.td_alinhar_justo{
+.td_alinhar_justo {
 	text-align: justify;
 }
 
-.a_link_clicavel{
+.a_link_clicavel {
 	color: white;
 	text-decoration: underline;
 }
 
-.a_link_clicavel:hover{
+.a_link_clicavel:hover {
 	color: #43bfe0;
 	text-decoration: none;
 }
@@ -113,34 +110,35 @@ form{
 	z-index: -1;
 }
 
-.table_border{
-	border: 2px solid #000000  ;
+.tabela_restricao {
+	margin-left: 17%;
+	margin-right: 17%;
+}
+
+.table_border {
+	border: 2px solid #000000;
 	border-collapse: collapse;
 	overflow: hidden;
 }
 
-.table_border tr:nth-child(even){
-	background-color:#3d3a3a 
+.table_border tr:nth-child(even) {
+	background-color: #3d3a3a
 }
 
-.table_border tr:nth-child(odd){
-	background-color:#302e2e
+.table_border tr:nth-child(odd) {
+	background-color: #302e2e
 }
 
-
-	
 .table_border td, th {
 	border: 1px solid white;
 	padding: 8px;
 }
 
-.table th{
+.table th {
 	font-weight: bold;
 	color: white;
 }
 
-.table tr{
+.table tr {
 	color: white;
 }
-
-

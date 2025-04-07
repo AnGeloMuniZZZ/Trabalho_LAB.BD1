@@ -81,15 +81,15 @@
 	<div>
 		<c:if test="${not empty livros}"> 
 			<c:if test="${not empty revistas }">
-				<table>
+				<table class="table_border table tabela_restricao">
 					<thead>
 						<tr>
-							<th>Codigo Exemplar</th>
-							<th>Codigo Administrador</th>
+							<th>Cod. Exemplar</th>
+							<th>Cod. Adm</th>
 							<th>Nome</th>
-							<th>Qtd. Páginas</th>
+							<th>Qtd. Pág</th>
 							<th>ISSN/ISBN</th>
-							<th>Edição(Livro)</th>
+							<th>Edição</th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -105,8 +105,8 @@
 								<td>${l.qtd_paginas }</td>
 								<td>${l.sigla }</td>
 								<td>${l.edicao }</td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.codigo_exemplar}">EDITAR</a></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.codigo_exemplar}">EXCLUIR</a></td>
+								<td><a class="a_link_clicavel" href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.codigo_exemplar}">EDITAR</a></td>
+								<td><a class="a_link_clicavel" href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.codigo_exemplar}">EXCLUIR</a></td>
 							</tr>
 						</c:forEach>
 						<c:forEach var="r" items="${revistas }">
@@ -117,8 +117,8 @@
 								<td>${r.qtd_paginas }</td>
 								<td>${r.sigla }</td>
 								<td></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.codigo_exemplar}">EDITAR</a></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.codigo_exemplar}">EXCLUIR</a></td>
+								<td><a class="a_link_clicavel" href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.codigo_exemplar}">EDITAR</a></td>
+								<td><a class="a_link_clicavel" href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.codigo_exemplar}">EXCLUIR</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
