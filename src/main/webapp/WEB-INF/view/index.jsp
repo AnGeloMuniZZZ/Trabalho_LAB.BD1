@@ -15,7 +15,7 @@
 	<br />
 	<div align="center" class=div_login>
 
-		<form method="post" action="visualizarExemplar">
+		<form method="post" action="index">
 			<h1 class=h1_titulo>Login Aluno</h1>
 			<table>
 				<tr>
@@ -43,5 +43,12 @@
 			</table>
 		</form>
 	</div>
+	<c:if test="${validar > 0}">
+		<c:if test="${not empty validar}">
+			<h1>Logado com sucesso!!!</h1>
+			<a href="visualizarExemplar">Alugar exemplares</a>
+			<h1>Aluguel não disponivel ainda!</h1>
+		</c:if>
+	</c:if>
 </body>
 </html>

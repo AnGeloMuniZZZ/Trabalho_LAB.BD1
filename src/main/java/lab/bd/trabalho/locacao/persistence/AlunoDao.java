@@ -101,7 +101,7 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 	@Override
 	public int realizarLogin(Aluno a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
-		String sql = "{CALL realizar_login_adm(?, ?, ?)}";
+		String sql = "{CALL realizar_login_aluno(?, ?, ?)}";
 		CallableStatement cs = con.prepareCall(sql);
 		cs.setString(1, a.getEmail());
 		cs.setString(2, a.getSenha());

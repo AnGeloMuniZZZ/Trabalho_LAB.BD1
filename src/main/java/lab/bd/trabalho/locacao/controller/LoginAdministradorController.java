@@ -58,8 +58,6 @@ public class LoginAdministradorController {
 				a.setUsuario(login);
 				a.setSenha(senhalogin);
 				model.addAttribute("validar", (aDao.realizarLogin(a))); 
-				System.out.println("Passou legal, ao menos");
-				System.out.println(aDao.realizarLogin(a));
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
