@@ -17,6 +17,5 @@ public class Administrador {
 	private String nome;
 	private String usuario;
 	private String senha;
-	private int validar;
 
 }

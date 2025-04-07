@@ -43,17 +43,13 @@
 		</form>
 		
 		<div>
-			<c:if test="${administrador.validar != 0 }">
+			<c:if test="${validar > 0}" >
+				<c:if test="${not empty validar}" >
 				<h1>Logado com sucesso!!!</h1>
 				<a href="controleExemplar">Fazer controle dos exemplares</a>
 				<a href="controleAluno">Fazer controle dos alunos</a>
+				</c:if>
 			</c:if>
-		</div>
-		
-		<!-- A função inserir administrador será oculta na tela, colocada aqui apenas para testes -->
-		<button style="backgrond-color: rgb(51,51,51); width: 50px; height: 50px"
-			 onclick="document.getElementById(Iadm).style.visibility='visible'" value="ola"></button>
-		<div >
 			<form action="loginAdministrador" method="post">
 				<table>
 					<tr style="border-bottom: solid white 12px;">

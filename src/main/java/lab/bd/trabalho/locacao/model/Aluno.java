@@ -18,6 +18,5 @@ public class Aluno {
 	private String nome_completo;
 	private String email;
 	private String senha;
-	private int validar;
 
 }

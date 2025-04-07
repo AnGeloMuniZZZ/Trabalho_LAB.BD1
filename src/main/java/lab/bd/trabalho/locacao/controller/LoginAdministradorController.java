@@ -26,15 +26,18 @@ public class LoginAdministradorController {
 		Administrador a = new Administrador();
 		
 		model.addAttribute("administrador", a);
+		model.addAttribute("validar", 0);
 		return new ModelAndView("loginAdministrador");
 	}
 	
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.POST)
-	public ModelAndView alunoPost(@RequestParam Map<String, String> params, ModelMap model) {
+	public ModelAndView administradorPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String codigo = params.get("codigo");
 		String nome = params.get("nome");
 		String usuario = params.get("usuario");
 		String senha = params.get("senha");
+		String login = params.get("login");
+		String senhalogin = params.get("senhalogin");
 		String cmd = params.get("botao");
 		
 		Administrador a;
@@ -43,7 +46,7 @@ public class LoginAdministradorController {
 		
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
-				a  = new Administrador();
+				a = new Administrador();
 				a.setCodigo(Integer.parseInt(codigo));
 				a.setNome(nome);
 				a.setUsuario(usuario);
@@ -51,8 +54,12 @@ public class LoginAdministradorController {
 				saida = aDao.inserir(a);
 			}
 			else if (cmd.equalsIgnoreCase("Logar")) {
-				a = new Administrador(0,"",usuario,senha,0);
-				a.setValidar(aDao.realizarLogin(a));
+				a = new Administrador();
+				a.setUsuario(login);
+				a.setSenha(senhalogin);
+				model.addAttribute("validar", (aDao.realizarLogin(a))); 
+				System.out.println("Passou legal, ao menos");
+				System.out.println(aDao.realizarLogin(a));
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
