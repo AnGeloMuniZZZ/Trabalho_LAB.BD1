@@ -123,13 +123,18 @@ public class VisualizarExemplarController {
 							r = null;
 							model.addAttribute("livro", l);
 						} else {
-							if (!cmd.equalsIgnoreCase("Buscar")) {
-								l = null;
-								r = null;
-								model.addAttribute("livro", r);
-							}
+							model.addAttribute("livro", l);
+						}
+					} else {
+						if (!cmd.equalsIgnoreCase("Buscar")) {
+							l = null;
+							r = null;
+							model.addAttribute("livro", r);
+						} else {
+							model.addAttribute("livro", r);
 						}
 					}
+
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				erro = e.getMessage();

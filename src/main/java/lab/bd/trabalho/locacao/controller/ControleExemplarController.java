@@ -28,8 +28,9 @@ public class ControleExemplarController {
 
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.GET)
 	/**
-	 *  Funcao responsavel por mapear a requisicao GET e carregar a pagina /controleExemplar, além de
-	 *  realizar o controle do tipo de Exemplar (Revista ou Livro)
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina
+	 * /controleExemplar, além de realizar o controle do tipo de Exemplar (Revista
+	 * ou Livro)
 	 * 
 	 * @param params
 	 * @param model
@@ -191,13 +192,18 @@ public class ControleExemplarController {
 							r = null;
 							model.addAttribute("livro", l);
 						} else {
-							if (!cmd.equalsIgnoreCase("Buscar")) {
-								l = null;
-								r = null;
-								model.addAttribute("livro", r);
-							}
+							model.addAttribute("livro", l);
+						}
+					} else {
+						if (!cmd.equalsIgnoreCase("Buscar")) {
+							l = null;
+							r = null;
+							model.addAttribute("livro", r);
+						} else {
+							model.addAttribute("livro", r);
 						}
 					}
+
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				erro = e.getMessage();
