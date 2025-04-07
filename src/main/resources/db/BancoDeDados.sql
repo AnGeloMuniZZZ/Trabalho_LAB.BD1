@@ -569,7 +569,7 @@ CREATE PROCEDURE controle_inserir_administrador(@codigo INTEGER, @nome VARCHAR(1
 DECLARE @codigo_duplicata BIT
 DECLARE @erro VARCHAR(200)
 
-IF (@nome IS NULL OR TRIM(@nome) = '' OR @usuario IS NULL OR TRIM(@usuario) = '' OR @senha IS NULL OR TRIM(@senha) = '') BEGIN
+IF (@codigo IS NULL OR TRIM(@codigo) = '' OR @nome IS NULL OR TRIM(@nome) = '' OR @usuario IS NULL OR TRIM(@usuario) = '' OR @senha IS NULL OR TRIM(@senha) = '') BEGIN
 	SET @erro = 'Campos em branco'
 	RAISERROR(@erro, 16, 1)
 	RETURN
@@ -894,8 +894,6 @@ EXEC controle_inserir_administrador 54, 'Luan Drocolebati', 'adm54', 'ASenhaLong
 PRINT(@test1_encontrar_adm)
 SELECT * FROM Administrador WHERE codigo = 54
 GO
-
-
 
 
 /* DROPAAAAA TUDO!!!!
