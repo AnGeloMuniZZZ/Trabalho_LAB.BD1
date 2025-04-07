@@ -105,8 +105,8 @@
 								<td>${l.qtd_paginas }</td>
 								<td>${l.sigla }</td>
 								<td>${l.edicao }</td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.exemplarcodigo}">EDITAR</a></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.exemplarcodigo}">EXCLUIR</a></td>
+								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.codigo_exemplar}">EDITAR</a></td>
+								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.codigo_exemplar}">EXCLUIR</a></td>
 							</tr>
 						</c:forEach>
 						<c:forEach var="r" items="${revistas }">
@@ -117,8 +117,8 @@
 								<td>${r.qtd_paginas }</td>
 								<td>${r.sigla }</td>
 								<td></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.exemplarcodigo}">EDITAR</a></td>
-								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.exemplarcodigo}">EXCLUIR</a></td>
+								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.codigo_exemplar}">EDITAR</a></td>
+								<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.codigo_exemplar}">EXCLUIR</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
