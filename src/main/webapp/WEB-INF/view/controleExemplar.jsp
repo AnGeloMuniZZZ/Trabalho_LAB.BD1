@@ -55,6 +55,8 @@
 				</tr>
 			</table>
 		</form>
+		<a href="loginAdminisrador">Deslogar</a>
+		<a class="a_link_clicavel" href="controleExemplar">Cadastrar Exemplares</a>
 	</div>
 	<br/>
 	<div class="conteiner" align="center">
