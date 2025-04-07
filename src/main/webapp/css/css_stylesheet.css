@@ -43,6 +43,11 @@ form {
 	vertical-align: text-top;
 }
 
+table {
+    width: auto; 
+    margin: 0 auto;
+}
+
 .h1_titulo {
 	font-weight: bolder;
 }
@@ -111,6 +116,7 @@ form {
 }
 
 .tabela_restricao {
+	margin: 0 auto;
 	margin-left: 17%;
 	margin-right: 17%;
 }
@@ -131,7 +137,7 @@ form {
 
 .table_border td, th {
 	border: 1px solid white;
-	padding: 8px;
+	padding: 6px;
 }
 
 .table th {

@@ -20,12 +20,12 @@
 				<h1>Controle de Exemplares</h1>
 				<table>
 					<tr>
-						<td colspan="1"><label for="codigo_exemplar">COD. Exemplar:</label></td>
+						<td colspan="1"><label for="codigo_exemplar">Cód. Exemplar:</label></td>
 						<td colspan="2"><input type="number" name="codigo_exemplar" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'></td>
 						<td colspan="1"><input type="submit" name="botao" value="Buscar"></td>
 					</tr>
 					<tr>
-						<td colspan="1"><label for="administrador_codigo">COD. Administrador:</label></td>
+						<td colspan="1"><label for="administrador_codigo">Cód. Administrador:</label></td>
 						<td colspan="3"><input type="text" name="administrador_codigo" id="nome" placeholder="Codigo do administrador" value='<c:out value="${livro.administrador_codigo }"/>'></td>
 					</tr>
 					<tr>
@@ -33,7 +33,7 @@
 						<td colspan="3"><input type="text" name="nome" id="nome" placeholder="Nome" value='<c:out value="${livro.nome }"/>'></td>
 					</tr>
 					<tr>
-						<td colspan="1"><label for="qtd_paginas">QNT. Paginas:</label></td>
+						<td colspan="1"><label for="qtd_paginas">Qnt. Paginas:</label></td>
 						<td colspan="3"><input type="number" name="qtd_paginas" id="qtdPaginas" placeholder="Quantidade de Páginas" value='<c:out value="${livro.qtd_paginas }"/>'></td>
 					</tr>
 					<tr>
@@ -57,7 +57,7 @@
 		
 		</br>
 		<div>
-			<a class="a_link_clicavel" href="loginAdminisrador">Deslogar</a>
+			<a class="a_link_clicavel" href="loginAdministrador">Deslogar</a>
 			<a class="a_link_clicavel" href="controleAluno">Controle de Alunos</a>
 		</div>
 		
