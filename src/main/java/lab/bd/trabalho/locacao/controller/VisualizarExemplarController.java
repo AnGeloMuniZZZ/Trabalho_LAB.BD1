@@ -12,10 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class VisualizarExemplarController {
 
-	@RequestMapping(name = "visualizarExemplar", value = "/visualizarExemplar", method = RequestMethod.GET)
-	public ModelAndView exemplarGet(@RequestParam Map<String, String> params, ModelMap model) {
-		String acao = params.get("acao");
-		return new ;
 		
-	}
+
 }
