@@ -3,8 +3,8 @@
 body {
 	background: linear-gradient(#3e3e3e, #111111);
     margin: 0;
+    min-height: 100vh;
     padding: 0;
-    height: 100vh;
 	font-family: Helvetica;
 	display: flex;
 	justify-content: center;
@@ -44,7 +44,6 @@ form{
 	vertical-align: text-top;
 }
 
-
 .h1_titulo{
 	font-weight: bolder;
 }
@@ -52,6 +51,14 @@ form{
 .div_h2{
 	text-align: justify;
 }
+
+
+.div_degrade {
+	min-height: 100vh;
+	width: 100%;
+}
+
+
 .h2_mensagem_DADOS{
 	color: white;
 	justify-content:flex-start;
@@ -68,7 +75,9 @@ form{
 	color: #70f140;
 }
 
-
+.td_alinhar_justo{
+	text-align: justify;
+}
 
 .a_link_clicavel{
 	color: white;
@@ -102,6 +111,36 @@ form{
 	background-size: cover;
 	background-position: center;
 	z-index: -1;
+}
+
+.table_border{
+	border: 2px solid #04ff00 ;
+	border-collapse: collapse;
+	overflow: hidden;
+}
+
+.table_border tr:nth-child(even){
+	background-color:#ff00dc
+}
+
+.table_border tr:nth-child(odd){
+	background-color:#ff6100
+}
+
+
+	
+.table_border td, th {
+	border: 1px solid white;
+	padding: 8px;
+}
+
+.table th{
+	font-weight: bold;
+	color: white;
+}
+
+.table tr{
+	color: white;
 }
 
 

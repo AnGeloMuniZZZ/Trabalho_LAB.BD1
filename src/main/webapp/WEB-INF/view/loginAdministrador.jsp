@@ -15,7 +15,7 @@
 
 	<div>
 
-		<div class="login" align="center">
+		<div align="center">
 			<form method="post" action="loginAdministrador">
 				<h1 class="h1_titulo">Login Administrador</h1>
 				<table>
@@ -49,8 +49,10 @@
 			<c:if test="${validar > 0}">
 				<c:if test="${not empty validar}">
 					<h1 class="h2_mensagem_VALIDACAO">Logado com sucesso!!!</h1>
-					<a href="controleExemplar" class="a_link_clicavel">Fazer controle dos exemplares</a>
-					<a href="controleAluno" class="a_link_clicavel">Fazer controle dos alunos</a>
+					<a href="controleExemplar" class="a_link_clicavel">Fazer
+						controle dos exemplares</a>
+					<a href="controleAluno" class="a_link_clicavel">Fazer controle
+						dos alunos</a>
 				</c:if>
 			</c:if>
 		</div>
@@ -83,7 +85,8 @@
 							name="senha" value='<c:out value="${administrador.senha }"/>'></td>
 					</tr>
 					<tr>
-						<td colspan="8"><input style="width:100% " type="submit" name="botao" value="inserir">
+						<td colspan="8"><input style="width: 100%" type="submit"
+							name="botao" value="Inserir">
 						<td />
 					</tr>
 				</table>
@@ -102,6 +105,7 @@
 				</h2>
 			</c:if>
 		</div>
+		
 	</div>
 
 </body>
