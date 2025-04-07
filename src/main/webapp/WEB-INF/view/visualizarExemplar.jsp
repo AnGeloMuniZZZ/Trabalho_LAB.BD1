@@ -6,20 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Visualização dos Exemplares</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
 </head>
 <body>
 		<div class="conteiner" align="center">
 		<h1>Visualização dos Exemplares</h1>
-		<!-- Usando exemplar já que a busca é pelo codigo_exemplar -->
-		<form action="exemplar" method="post">
+		<form action="visualizarExemplar" method="post">
 			<table>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="3">
-						<input type="number" min="0" step="1" name="cod" id="cod" placeholder="Código" value='<c:out value="${exemplar.codigo_exemplar }"/>'>
+						<input type="number" min="0" step="1" name="cod" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'>
 					</td>
 					<td>
 						<input type="submit" name="botao" value="buscar" class="btn btn-dark">
@@ -27,23 +22,22 @@
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<p><c:out value="${exemplar.nome }"/></p>
+						<p><c:out value="${livro.nome }"/></p>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<p><c:out value="${exemplar.qtdPaginas }"/></p>
+						<p><c:out value="${livro.qtd_paginas }"/></p>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-					<!-- Fazendo um campo para receber o issn ou isbn -->
-						<p><c:out value="${exemplar.codI }"/></p>
+						<p><c:out value="${livro.sigla }"/></p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<p><c:out value="${exemplar.edicao }"/></p>
+						<p><c:out value="${edicao }"/></p>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
@@ -53,44 +47,63 @@
 		</form>
 	</div>
 	<br/>
-	<div class="conteiner" align="center">
-		<c:if test="${not empty saida }">
-			<h2><c:out value="${saida }"/></h2>
-		</c:if>
-	</div>
-		<div class="conteiner" align="center">
-		<c:if test="${not empty erro }">
-			<h2><c:out value="${erro }"/></h2>
-		</c:if>
-	</div>
-	<div class="conteiner" align="center">
-		<c:if test="${not empty exemplares }">
-			<table class=""table table-dark table-striped-columns>
-				<thead>
-					<tr>
-						<th>Codigo Exemplar</th>
-						<th>Codigo Administrador</th>
-						<th>Nome</th>
-						<th>Qtd. Páginas</th>
-						<th>ISSN/ISBN</th>
-						<th>Edição(Livro)</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="e" items="${exemplares }">
+		<div>
+			<c:if test="${not empty saida }">
+				<h2 class="h2_mensagem_VALIDACAO">
+					<c:out value="${saida }" />
+				</h2>
+			</c:if>
+			<c:if test="${not empty erro }">
+				<h2 class="h2_mensagem_ERRO">
+					<c:out value="${erro }" />
+				</h2>
+			</c:if>
+		</div>
+	
+	<div>
+		<c:if test="${not empty livros}"> 
+			<c:if test="${not empty revistas }">
+				<table>
+					<thead>
 						<tr>
-							<td>${e.codigo_exemplar }</td>
-							<td>${e.administrador_codigo }</td>
-							<td>${e.nome }</td>
-							<td>${e.qtd_paginas }</td>
-							<td>${e.codI }</td>
-							<td>${e.edicao }</td>
+							<th>Codigo Exemplar</th>
+							<th>Codigo Administrador</th>
+							<th>Nome</th>
+							<th>Qtd. Páginas</th>
+							<th>ISSN/ISBN</th>
+							<th>Edição(Livro)</th>
+							<th></th>
+							<th></th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					
+
+					<tbody>
+						<c:forEach var="l" items="${livros }">
+							<tr>
+								<td>${l.codigo_exemplar }</td>
+								<td>${l.administrador_codigo }</td>
+								<td>${l.nome }</td>
+								<td>${l.qtd_paginas }</td>
+								<td>${l.sigla }</td>
+								<td>${l.edicao }</td>
+								<td><a href="${pageContext.request.contextPath }/visualizarExemplar?acao=editar&id=${l.codigo_exemplar}">VER</a></td>
+							</tr>
+						</c:forEach>
+						<c:forEach var="r" items="${revistas }">
+							<tr>
+								<td>${r.codigo_exemplar }</td>
+								<td>${r.administrador_codigo }</td>
+								<td>${r.nome }</td>
+								<td>${r.qtd_paginas }</td>
+								<td>${r.sigla }</td>
+								<td></td>
+								<td><a href="${pageContext.request.contextPath }/visualizarExemplar?acao=editar&id=${r.codigo_exemplar}">VER</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
 		</c:if>
 	</div>
 </body>

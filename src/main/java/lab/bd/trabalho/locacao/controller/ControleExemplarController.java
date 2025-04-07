@@ -29,7 +29,7 @@ public class ControleExemplarController {
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.GET)
 	public ModelAndView controleExemplarGet(@RequestParam Map<String, String> params, ModelMap model) {
 		String acao = params.get("acao");
-		String exemplarcodigo = params.get("id");
+		String codigo_exemplar = params.get("id");
 		Livro l = new Livro();
 		List<Livro> livros = new ArrayList<>();
 		Revista r = new Revista();
@@ -37,8 +37,9 @@ public class ControleExemplarController {
 		String erro = "";
 
 		try {
-			if (exemplarcodigo != null && !exemplarcodigo.isBlank()) {
-				l.setExemplarcodigo(Integer.parseInt(exemplarcodigo));
+			if (codigo_exemplar != null && !codigo_exemplar.isBlank()) {
+				l.setCodigo_exemplar(Integer.parseInt(codigo_exemplar));
+				r.setCodigo_exemplar(Integer.parseInt(codigo_exemplar));
 				// Verificar se é um livro ou revista pelo codigo do exemplar usando o codigo de
 				// exemplar
 				String verifica = lDao.descobrirSiglaPorCodigo(l);
