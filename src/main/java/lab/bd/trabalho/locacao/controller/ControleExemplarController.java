@@ -27,6 +27,14 @@ public class ControleExemplarController {
 	private RevistaDao rDao;
 
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.GET)
+	/**
+	 *  Funcao responsavel por mapear a requisicao GET e carregar a pagina /controleExemplar, além de
+	 *  realizar o controle do tipo de Exemplar (Revista ou Livro)
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina GET e o tipo de Exemplar
+	 */
 	public ModelAndView controleExemplarGet(@RequestParam Map<String, String> params, ModelMap model) {
 		String acao = params.get("acao");
 		String codigo_exemplar = params.get("id");
@@ -81,6 +89,13 @@ public class ControleExemplarController {
 	}
 
 	@RequestMapping(name = "controleExemplar", value = "/controleExemplar", method = RequestMethod.POST)
+	/**
+	 * Realiza as operações de Inserir, Atualizar, Exclur, Buscar e Listar
+	 * 
+	 * @param params
+	 * @param model
+	 * @return
+	 */
 	public ModelAndView controleExemplarPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String codigoExemplar = params.get("codigo_exemplar");
 		String administrador_codigo = params.get("administrador_codigo");

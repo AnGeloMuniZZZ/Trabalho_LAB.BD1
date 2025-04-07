@@ -22,11 +22,11 @@ public class CadastroAlunoController {
 	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.GET)
 	/**
-	 * Funcao responsavel por mapear a requisicao GET e caregar a pagina /cadastroAluno
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /cadastroAluno
 	 * 
 	 * @param params
 	 * @param model
-	 * @return A requisicao da pagina
+	 * @return A requisicao da pagina GET
 	 */
 	public ModelAndView alunoGet(@RequestParam Map<String, String> params, ModelMap model) {
 		return new ModelAndView("cadastroAluno");

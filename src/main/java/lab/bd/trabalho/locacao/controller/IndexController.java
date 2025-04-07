@@ -21,11 +21,25 @@ public class IndexController {
 	private AlunoDao aDao;
 	
 	@RequestMapping(name = "index", value = "/index", method = RequestMethod.GET)
+	/**
+	 *  Funcao responsavel por mapear a requisicao GET e carregar a pagina inicial /index
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina GET
+	 */
 	public ModelAndView indexGet(@RequestParam Map<String, String> params, ModelMap model) {
 		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(name = "index", value = "/index", method = RequestMethod.POST)
+	/**
+	 * Realiza a validacao do Login do Aluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return Retorna requisao POST e mensagens de validacao
+	 */
 	public ModelAndView indexPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String usuario = params.get("login");
 		String senha = params.get("senha");

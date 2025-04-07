@@ -22,6 +22,13 @@ public class ControleAlunoController {
 	private AlunoDao aDao;
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.GET)
+	/**
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /cadastroAluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina GET
+	 */
 	public ModelAndView pessoaGet(@RequestParam Map<String, String> params, ModelMap model) {
 		String acao = params.get("acao");
 		String cpf = params.get("id");
@@ -47,6 +54,13 @@ public class ControleAlunoController {
 	}
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.POST)
+	/**
+	 * Realiza o Controle de Atualizacao, Busca e Listagem da Entidade Aluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return Retorna requisao POST e mensagens de erro, saida e aviso
+	 */
 	public ModelAndView pessoaPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String cpf = params.get("cpf");
 		String senha = params.get("senha");
