@@ -47,11 +47,13 @@ public class VisualizarExemplarController {
 					if (acao.equals("editar")) {
 						l = lDao.buscar(l);
 						livros = null;
+						model.addAttribute("livro", l);
 					}
 				} else {
 					if (acao.equals("editar")) {
 						r = rDao.buscar(r);
 						revistas = null;
+						model.addAttribute("livro", r);
 					}
 				}
 			}
@@ -64,9 +66,8 @@ public class VisualizarExemplarController {
 			} else {
 				model.addAttribute("edicao", l.getEdicao());
 			}
-			model.addAttribute("livro", l);
+
 			model.addAttribute("livros", livros);
-			model.addAttribute("livro", r);
 			model.addAttribute("revistas", revistas);
 		}
 		return new ModelAndView("visualizarExemplar");
@@ -113,6 +114,27 @@ public class VisualizarExemplarController {
 		} catch (SQLException | ClassNotFoundException e) {
 			erro = e.getMessage();
 		} finally {
+			try {
+				if (!cmd.equalsIgnoreCase("Listar")) {
+					String verifica = lDao.descobrirSiglaPorCodigo(l);
+					if (verifica.equals("L")) {
+						if (!cmd.equalsIgnoreCase("Buscar")) {
+							l = null;
+							r = null;
+							model.addAttribute("livro", l);
+						} else {
+							if (!cmd.equalsIgnoreCase("Buscar")) {
+								l = null;
+								r = null;
+								model.addAttribute("livro", r);
+							}
+						}
+					}
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				erro = e.getMessage();
+
+			}
 			if (!cmd.equalsIgnoreCase("Buscar")) {
 				l = null;
 				r = null;
@@ -129,8 +151,6 @@ public class VisualizarExemplarController {
 		} else {
 			model.addAttribute("edicao", l.getEdicao());
 		}
-		model.addAttribute("livro", l);
-		model.addAttribute("livro", r);
 		model.addAttribute("livros", livros);
 		model.addAttribute("revistas", revistas);
 

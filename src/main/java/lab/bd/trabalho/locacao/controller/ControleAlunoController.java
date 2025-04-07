@@ -22,7 +22,7 @@ public class ControleAlunoController {
 	private AlunoDao aDao;
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.GET)
-	public ModelAndView pessoaGet(@RequestParam Map<String, String> params, ModelMap model) {
+	public ModelAndView controleAlunoGet(@RequestParam Map<String, String> params, ModelMap model) {
 		String acao = params.get("acao");
 		String cpf = params.get("id");
 		Aluno a = new Aluno();
@@ -47,7 +47,7 @@ public class ControleAlunoController {
 	}
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.POST)
-	public ModelAndView pessoaPost(@RequestParam Map<String, String> params, ModelMap model) {
+	public ModelAndView controleAlunoPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String cpf = params.get("cpf");
 		String senha = params.get("senha");
 		String cmd = params.get("botao");
