@@ -74,7 +74,7 @@ public class ControleExemplarController {
 			}
 			model.addAttribute("livro", l);
 			model.addAttribute("livros", livros);
-			model.addAttribute("revista", r);
+			model.addAttribute("livro", r);
 			model.addAttribute("revistas", revistas);
 		}
 		return new ModelAndView("controleExemplar");
@@ -91,6 +91,7 @@ public class ControleExemplarController {
 		String cmd = params.get("botao");
 		String saida = "";
 		String erro = "";
+		String verifica;
 
 		Livro l = new Livro();
 		Revista r = new Revista();
@@ -123,8 +124,8 @@ public class ControleExemplarController {
 			// Verificar se é um livro ou revista pelo codigo do exemplar usando o issn ou
 			// isbn
 			if (cmd.equalsIgnoreCase("Buscar") || cmd.equalsIgnoreCase("Excluir")) {
-				String verifica = lDao.descobrirSiglaPorCodigo(l);
-				if (verifica.equals("L")) {
+				verifica = lDao.descobrirSiglaPorCodigo(l);
+				if (verifica.equals("L")) {	
 					if (cmd.equalsIgnoreCase("Buscar")) {
 						l = lDao.buscar(l);
 					}
@@ -141,7 +142,7 @@ public class ControleExemplarController {
 					}
 				}
 			} else if(cmd.equalsIgnoreCase("Inserir") || cmd.equalsIgnoreCase("Atualizar")){
-				String verifica = lDao.descobrirSigla(l);
+				verifica = lDao.descobrirSigla(l);
 				if (verifica.equals("L")) {
 					if (cmd.equalsIgnoreCase("Inserir")) {
 						saida = lDao.inserir(l);
@@ -166,6 +167,19 @@ public class ControleExemplarController {
 		} catch (SQLException | ClassNotFoundException e) {
 			erro = e.getMessage();
 		} finally {
+			try {
+				verifica = lDao.descobrirSiglaPorCodigo(l);
+				if (verifica.equals("L")) {
+					if (!cmd.equalsIgnoreCase("Buscar")) {
+						l = null;
+						r = null;
+						
+					}
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				erro = e.getMessage();
+			} 
+			
 			if (!cmd.equalsIgnoreCase("Buscar")) {
 				l = null;
 				r = null;
@@ -182,7 +196,7 @@ public class ControleExemplarController {
 		} else {
 			model.addAttribute("edicao", l.getEdicao());
 		}
-		model.addAttribute("livro", l);
+		
 		model.addAttribute("livro", r);
 		model.addAttribute("livros", livros);
 		model.addAttribute("revistas", revistas);

@@ -48,7 +48,7 @@ public class VisualizarExemplarController {
 						l = lDao.buscar(l);
 						livros = null;
 					}
-				}else {
+				} else {
 					if (acao.equals("editar")) {
 						r = rDao.buscar(r);
 						revistas = null;
@@ -66,7 +66,7 @@ public class VisualizarExemplarController {
 			}
 			model.addAttribute("livro", l);
 			model.addAttribute("livros", livros);
-			model.addAttribute("revista", r);
+			model.addAttribute("livro", r);
 			model.addAttribute("revistas", revistas);
 		}
 		return new ModelAndView("visualizarExemplar");
@@ -75,11 +75,6 @@ public class VisualizarExemplarController {
 	@RequestMapping(name = "visualizarExemplar", value = "/visualizarExemplar", method = RequestMethod.POST)
 	public ModelAndView visualizarExemplarPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String codigoExemplar = params.get("codigo_exemplar");
-		String administrador_codigo = params.get("administrador_codigo");
-		String nome = params.get("nome");
-		String qtd_paginas = params.get("qtd_paginas");
-		String issnisbn = params.get("sigla");
-		String edicao = params.get("edicao");
 		String cmd = params.get("botao");
 		String saida = "";
 		String erro = "";
@@ -90,18 +85,6 @@ public class VisualizarExemplarController {
 		if (!cmd.equalsIgnoreCase("Listar")) {
 			l.setCodigo_exemplar(Integer.parseInt(codigoExemplar));
 			r.setCodigo_exemplar(Integer.parseInt(codigoExemplar));
-		}
-		if (cmd.contentEquals("Inserir") || cmd.equalsIgnoreCase("Atualizar")) {
-			l.setAdministrador_codigo(Integer.parseInt(administrador_codigo));
-			l.setNome(nome);
-			l.setQtd_paginas(Integer.parseInt(qtd_paginas));
-			l.setSigla(issnisbn);
-			l.setEdicao(Integer.parseInt(edicao));
-
-			r.setAdministrador_codigo(Integer.parseInt(administrador_codigo));
-			r.setNome(nome);
-			r.setQtd_paginas(Integer.parseInt(qtd_paginas));
-			r.setSigla(issnisbn);
 		}
 
 		List<Livro> livros = new ArrayList<Livro>();
@@ -114,43 +97,15 @@ public class VisualizarExemplarController {
 			}
 			// Verificar se é um livro ou revista pelo codigo do exemplar usando o issn ou
 			// isbn
-			if (cmd.equalsIgnoreCase("Buscar") || cmd.equalsIgnoreCase("Excluir")) {
+			if (cmd.equalsIgnoreCase("Buscar")) {
 				String verifica = lDao.descobrirSiglaPorCodigo(l);
 				if (verifica.equals("L")) {
 					if (cmd.equalsIgnoreCase("Buscar")) {
 						l = lDao.buscar(l);
 					}
-					if (cmd.equalsIgnoreCase("Excluir")) {
-						saida = lDao.excluir(l);
-					}
-
 				} else {
 					if (cmd.equalsIgnoreCase("Buscar")) {
 						r = rDao.buscar(r);
-					}
-					if (cmd.equalsIgnoreCase("Excluir")) {
-						saida = rDao.excluir(r);
-					}
-				}
-			} else if (cmd.equalsIgnoreCase("Inserir") || cmd.equalsIgnoreCase("Atualizar")) {
-				String verifica = lDao.descobrirSigla(l);
-				if (verifica.equals("L")) {
-					if (cmd.equalsIgnoreCase("Inserir")) {
-						saida = lDao.inserir(l);
-					}
-
-					if (cmd.equalsIgnoreCase("Atualizar")) {
-						saida = lDao.atualizar(l);
-					}
-
-				} else {
-
-					if (cmd.equalsIgnoreCase("Inserir")) {
-						saida = rDao.inserir(r);
-					}
-
-					if (cmd.equalsIgnoreCase("Atualizar")) {
-						saida = rDao.atualizar(r);
 					}
 				}
 			}

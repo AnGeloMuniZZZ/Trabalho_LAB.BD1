@@ -86,7 +86,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 		String sql = "SELECT codigo_exemplar, Administrador_codigo, nome, qtd_paginas, ExemplarCodigo, isbn, edicao FROM Exemplar, Livro "
 				+ "WHERE codigo_exemplar = ExemplarCodigo AND codigo_exemplar LIKE ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, l.getExemplarcodigo());
+		ps.setInt(1, l.getCodigo_exemplar());
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			l.setCodigo_exemplar(rs.getInt("codigo_exemplar"));
