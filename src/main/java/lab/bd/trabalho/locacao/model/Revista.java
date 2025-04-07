@@ -14,6 +14,6 @@ import lombok.ToString;
 public class Revista extends Exemplar{
 	
 	private int exemplarcodigo;
-	private String issn;
+	private String sigla;
 	
 }

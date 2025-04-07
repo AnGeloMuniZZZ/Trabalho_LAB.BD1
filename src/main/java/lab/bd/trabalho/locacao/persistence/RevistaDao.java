@@ -30,7 +30,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 		cs.setInt(3, r.getAdministrador_codigo());
 		cs.setString(4, r.getNome());
 		cs.setInt(5, r.getQtd_paginas());
-		cs.setString(6, r.getIssn());
+		cs.setString(6, r.getSigla());
 		cs.setNull(7, Types.INTEGER);
 		cs.registerOutParameter(8, Types.VARCHAR);
 		cs.execute();
@@ -95,7 +95,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 			r.setQtd_paginas(rs.getInt("qtd_paginas"));
 			//codigo do exemplar duplicado
 			r.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			r.setIssn(rs.getString("isbn"));
+			r.setSigla(rs.getString("isbn"));
 		}
 		rs.close();
 		ps.close();
@@ -118,7 +118,7 @@ public class RevistaDao implements ICrudExDao<Revista> {
 			revista.setNome(rs.getString("nome"));
 			revista.setQtd_paginas(rs.getInt("qtd_paginas"));
 			revista.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			revista.setIssn(rs.getString("isbn"));
+			revista.setSigla(rs.getString("isbn"));
 			revistas.add(revista);
 		}
 		rs.close();

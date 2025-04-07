@@ -30,7 +30,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 		cs.setInt(3, l.getAdministrador_codigo());
 		cs.setString(4, l.getNome());
 		cs.setInt(5, l.getQtd_paginas());
-		cs.setString(6, l.getIsbn());
+		cs.setString(6, l.getSigla());
 		cs.setInt(7, l.getEdicao());
 		cs.registerOutParameter(8, Types.VARCHAR);
 		cs.execute();
@@ -50,7 +50,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 		cs.setInt(3, l.getAdministrador_codigo());
 		cs.setString(4, l.getNome());
 		cs.setInt(5, l.getQtd_paginas());
-		cs.setString(6, l.getIsbn());
+		cs.setString(6, l.getSigla());
 		cs.setInt(7, l.getEdicao());
 		cs.registerOutParameter(8, Types.VARCHAR);
 		cs.execute();
@@ -94,7 +94,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 			l.setNome(rs.getString("nome"));
 			l.setQtd_paginas(rs.getInt("qtd_paginas"));
 			l.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			l.setIsbn(rs.getString("isbn"));
+			l.setSigla(rs.getString("isbn"));
 			l.setEdicao(rs.getInt("edicao"));
 		}
 		rs.close();
@@ -118,7 +118,7 @@ public class LivroDao implements ICrudExDao<Livro>{
 			livro.setNome(rs.getString("nome"));
 			livro.setQtd_paginas(rs.getInt("qtd_paginas"));
 			livro.setExemplarcodigo(rs.getInt("ExemplarCodigo"));
-			livro.setIsbn(rs.getString("isbn"));
+			livro.setSigla(rs.getString("isbn"));
 			livro.setEdicao(rs.getInt("edicao"));
 			livros.add(livro);
 		}

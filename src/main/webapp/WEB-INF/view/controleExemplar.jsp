@@ -19,27 +19,27 @@
 						<input type="number" name="codigo_exemplar" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'>
 					</td>
 					<td>
-						<input type="submit" name="botao" value="buscar" class="btn btn-dark">
+						<input type="submit" name="botao" value="Buscar" class="btn btn-dark">
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="codAdm" id="nome" placeholder="nome" value='<c:out value="${livro.codAdm }"/>'>
+						<input type="text" name="administrador_codigo" id="nome" placeholder="Codigo do administrador" value='<c:out value="${livro.administrador_codigo }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="text" name="nome" id="nome" placeholder="nome" value='<c:out value="${livro.nome }"/>'>
+						<input type="text" name="nome" id="nome" placeholder="Nome" value='<c:out value="${livro.nome }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="number" name="qtdPaginas" id="qtdPaginas" value='<c:out value="${livro.qtdPaginas }"/>'>
+						<input type="number" name="qtd_paginas" id="qtdPaginas" placeholder="Quantidade de Páginas" value='<c:out value="${livro.qtd_paginas }"/>'>
 					</td>
 				</tr>
 				<tr style="border-bottom: solid white 12px;">
 					<td colspan="4">
-						<input type="number" name="siglaExemplar" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.isbn }"/>'>
+						<input type="number" name="sigla" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.sigla }"/>'>
 					</td>
 				</tr>
 				<tr>
@@ -68,8 +68,7 @@
 		</c:if>
 	</div>
 	<div class="conteiner" align="center">
-		<c:if test="${not empty livros || not empty revistas }">
-			<table class=""table table-dark table-striped-columns>
+	<table class=""table table-dark table-striped-columns>
 				<thead>
 					<tr>
 						<th>Codigo Exemplar</th>
@@ -82,15 +81,18 @@
 						<th></th>
 					</tr>
 				</thead>
+		<c:if test="${not empty livros}"> 
+			<c:if test="${not empty revistas }">
+			
 				<tbody>
 					<c:forEach var="l" items="${livros }">
 						<tr>
-							<td>${e.codigo_exemplar }</td>
-							<td>${e.administrador_codigo }</td>
-							<td>${e.nome }</td>
-							<td>${e.qtd_paginas }</td>
-							<td>${e.codI }</td>
-							<td>${e.edicao }</td>
+							<td>${l.codigo_exemplar }</td>
+							<td>${l.administrador_codigo }</td>
+							<td>${l.nome }</td>
+							<td>${l.qtd_paginas }</td>
+							<td>${l.sigla }</td>
+							<td>${l.edicao }</td>
 							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${l.exemplarcodigo}">EDITAR</a></td>
 							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${l.exemplarcodigo}">EXCLUIR</a></td>
 						</tr>
@@ -101,7 +103,7 @@
 							<td>${r.administrador_codigo }</td>
 							<td>${r.nome }</td>
 							<td>${r.qtd_paginas }</td>
-							<td>${r.codI }</td>
+							<td>${r.sigla }</td>
 							<td></td>
 							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=editar&id=${r.exemplarcodigo}">EDITAR</a></td>
 							<td><a href="${pageContext.request.contextPath }/controleExemplar?acao=excluir&id=${r.exemplarcodigo}">EXCLUIR</a></td>
@@ -109,6 +111,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			</c:if>
 		</c:if>
 	</div>
 </body>

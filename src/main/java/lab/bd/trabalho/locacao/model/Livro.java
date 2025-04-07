@@ -14,7 +14,7 @@ import lombok.ToString;
 public class Livro extends Exemplar {
 	
 	private int exemplarcodigo;
-	private String isbn;
+	private String sigla;
 	private int edicao;
 
 }

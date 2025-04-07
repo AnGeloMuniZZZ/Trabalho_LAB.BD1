@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Exemplar {
+public abstract class Exemplar {
 	
 	protected int codigo_exemplar;
 	protected int administrador_codigo;
