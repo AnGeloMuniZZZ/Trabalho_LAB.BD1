@@ -19,36 +19,43 @@
 			<form action="controleExemplar" method="post">
 				<h1>Controle de Exemplares</h1>
 				<table>
-					<tr style="border-bottom: solid white 12px;">
-						<td colspan="3"><input type="number" name="codigo_exemplar" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'></td>
-						<td><input type="submit" name="botao" value="Buscar"></td>
-					</tr>
-					<tr style="border-bottom: solid white 12px;">
-						<td colspan="4"><input type="text" name="administrador_codigo" id="nome" placeholder="Codigo do administrador" value='<c:out value="${livro.administrador_codigo }"/>'></td>
-					</tr>
-					<tr style="border-bottom: solid white 12px;">
-						<td colspan="4"><input type="text" name="nome" id="nome" placeholder="Nome" value='<c:out value="${livro.nome }"/>'></td>
-					</tr>
-					<tr style="border-bottom: solid white 12px;">
-						<td colspan="4"><input type="number" name="qtd_paginas" id="qtdPaginas" placeholder="Quantidade de Páginas" value='<c:out value="${livro.qtd_paginas }"/>'></td>
-					</tr>
-					<tr style="border-bottom: solid white 12px;">
-						<td colspan="4"><input type="number" name="sigla" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.sigla }"/>'></td>
+					<tr>
+						<td colspan="1"><label for="codigo_exemplar">COD. Exemplar:</label></td>
+						<td colspan="2"><input type="number" name="codigo_exemplar" id="cod" placeholder="Código" value='<c:out value="${livro.codigo_exemplar }"/>'></td>
+						<td colspan="1"><input type="submit" name="botao" value="Buscar"></td>
 					</tr>
 					<tr>
-						<td><input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${edicao }'/>"></td>
+						<td colspan="1"><label for="administrador_codigo">COD. Administrador:</label></td>
+						<td colspan="3"><input type="text" name="administrador_codigo" id="nome" placeholder="Codigo do administrador" value='<c:out value="${livro.administrador_codigo }"/>'></td>
+					</tr>
+					<tr>
+						<td colspan="1"><label for="nome">Titulo do Exemplar:</label></td>
+						<td colspan="3"><input type="text" name="nome" id="nome" placeholder="Nome" value='<c:out value="${livro.nome }"/>'></td>
+					</tr>
+					<tr>
+						<td colspan="1"><label for="qtd_paginas">QNT. Paginas:</label></td>
+						<td colspan="3"><input type="number" name="qtd_paginas" id="qtdPaginas" placeholder="Quantidade de Páginas" value='<c:out value="${livro.qtd_paginas }"/>'></td>
+					</tr>
+					<tr>
+						<td colspan="1"><label for="sigla">ISBN / ISSN:</label></td>
+						<td colspan="3"><input type="number" name="sigla" id="siglaExemplar" placeholder="Codigo de publicação do exemplar" value='<c:out value="${livro.sigla }"/>'></td>
+					</tr>
+					<tr>
+						<td colspan="1"><label for="edicao">Num. Edicao:</label></td>
+						<td colspan="3"><input type="number" name="edicao" id="edicao" placeholder="Edição" value="<c:out value='${edicao }'/>"></td>
 					</tr>
 					
-					<tr style="border-bottom: solid white 12px;">
-	                    <td><input type="submit" name="botao" value="Inserir"></td>
-	                    <td><input type="submit" name="botao" value="Atualizar"></td>
-	                    <td><input type="submit" name="botao" value="Excluir"></td>
-	                    <td><input type="submit" name="botao" value="Listar"></td>
+					<tr>
+	                    <td colspan="1"><input style="width: 100%" type="submit" name="botao" value="Inserir"></td>
+	                    <td colspan="1"><input style="width: 100%" type="submit" name="botao" value="Atualizar"></td>
+	                    <td colspan="1"><input style="width: 100%" type="submit" name="botao" value="Excluir"></td>
+	                    <td colspan="1"><input style="width: 100%" type="submit" name="botao" value="Listar"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 		
+		</br>
 		<div>
 			<a class="a_link_clicavel" href="loginAdminisrador">Deslogar</a>
 			<a class="a_link_clicavel" href="controleAluno">Controle de Alunos</a>
