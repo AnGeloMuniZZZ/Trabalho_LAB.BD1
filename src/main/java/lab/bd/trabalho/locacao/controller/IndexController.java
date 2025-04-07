@@ -51,7 +51,7 @@ public class IndexController {
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
-		model.addAttribute("administrador", a);
+		model.addAttribute("aluno", a);
 		
 		return new ModelAndView("index");
 	}
