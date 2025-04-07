@@ -20,10 +20,11 @@ import lab.bd.trabalho.locacao.persistence.AlunoDao;
 public class ControleAlunoController {
 	@Autowired
 	private AlunoDao aDao;
-	
+
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.GET)
 	/**
-	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /cadastroAluno
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina
+	 * /cadastroAluno
 	 * 
 	 * @param params
 	 * @param model
@@ -52,7 +53,7 @@ public class ControleAlunoController {
 		}
 		return new ModelAndView("controleAluno");
 	}
-	
+
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.POST)
 	/**
 	 * Realiza o Controle de Atualizacao, Busca e Listagem da Entidade Aluno
@@ -65,7 +66,7 @@ public class ControleAlunoController {
 		String cpf = params.get("cpf");
 		String senha = params.get("senha");
 		String cmd = params.get("botao");
-		
+
 		Aluno a = new Aluno();
 		if (!cmd.equalsIgnoreCase("Listar")) {
 			a.setCpf(cpf);
@@ -73,11 +74,11 @@ public class ControleAlunoController {
 		if (cmd.equalsIgnoreCase("Atualizar")) {
 			a.setSenha(senha);
 		}
-		
+
 		String saida = "";
 		String erro = "";
 		List<Aluno> alunos = new ArrayList<Aluno>();
-		
+
 		try {
 			if (cmd.equalsIgnoreCase("Atualizar")) {
 				saida = aDao.atualizar(a);
@@ -102,7 +103,7 @@ public class ControleAlunoController {
 		model.addAttribute("saida", saida);
 		model.addAttribute("aluno", a);
 		model.addAttribute("alunos", alunos);
-		
+
 		return new ModelAndView("controleAluno");
 	}
 }

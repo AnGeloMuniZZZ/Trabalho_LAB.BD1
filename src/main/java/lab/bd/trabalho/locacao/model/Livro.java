@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Livro extends Exemplar {
-	
+
 	private int exemplarcodigo;
 	private String sigla;
 	private int edicao;

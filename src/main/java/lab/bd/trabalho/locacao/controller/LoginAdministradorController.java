@@ -14,16 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 import lab.bd.trabalho.locacao.model.Administrador;
 import lab.bd.trabalho.locacao.persistence.AdministradorDao;
 
-
 @Controller
 public class LoginAdministradorController {
-	
+
 	@Autowired
 	private AdministradorDao aDao;
-	
+
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.GET)
 	/**
-	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /loginAdministrador
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina
+	 * /loginAdministrador
 	 * 
 	 * @param params
 	 * @param model
@@ -31,15 +31,16 @@ public class LoginAdministradorController {
 	 */
 	public ModelAndView administradorGet(@RequestParam Map<String, String> params, ModelMap model) {
 		Administrador a = new Administrador();
-		
+
 		model.addAttribute("administrador", a);
 		model.addAttribute("validar", 0);
 		return new ModelAndView("loginAdministrador");
 	}
-	
+
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.POST)
 	/**
-	 * Realiza a validacao de Login do Administrado, além de criar e inserir um novo administrador no banco de dados
+	 * Realiza a validacao de Login do Administrado, além de criar e inserir um novo
+	 * administrador no banco de dados
 	 * 
 	 * @param params
 	 * @param model
@@ -53,11 +54,11 @@ public class LoginAdministradorController {
 		String login = params.get("login");
 		String senhalogin = params.get("senhalogin");
 		String cmd = params.get("botao");
-		
+
 		Administrador a;
 		String saida = "";
 		String erro = "";
-		
+
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
 				a = new Administrador();
@@ -66,26 +67,23 @@ public class LoginAdministradorController {
 				a.setUsuario(usuario);
 				a.setSenha(senha);
 				saida = aDao.inserir(a);
-			}
-			else if (cmd.equalsIgnoreCase("Logar")) {
+			} else if (cmd.equalsIgnoreCase("Logar")) {
 				a = new Administrador();
 				a.setUsuario(login);
 				a.setSenha(senhalogin);
-				model.addAttribute("validar", (aDao.realizarLogin(a))); 
+				model.addAttribute("validar", (aDao.realizarLogin(a)));
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			erro = e.getMessage();
 		} finally {
 			a = null;
-			
+
 		}
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
 		model.addAttribute("administrador", a);
-		
+
 		return new ModelAndView("loginAdministrador");
 	}
 }
-
-

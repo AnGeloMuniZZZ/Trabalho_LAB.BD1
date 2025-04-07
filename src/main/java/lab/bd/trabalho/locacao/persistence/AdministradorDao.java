@@ -18,7 +18,7 @@ public class AdministradorDao implements ICrudInserirDao<Administrador>, ICrudLo
 
 	@Autowired
 	private ConnectionDao gDao;
-	
+
 	@Override
 	public String inserir(Administrador a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
@@ -50,5 +50,5 @@ public class AdministradorDao implements ICrudInserirDao<Administrador>, ICrudLo
 		con.close();
 		return v;
 	}
-	
+
 }

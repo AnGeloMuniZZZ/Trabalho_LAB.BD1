@@ -16,7 +16,7 @@ import lab.bd.trabalho.locacao.model.Revista;
 
 @Repository
 public class RevistaDao implements ICrudExDao<Revista> {
-	
+
 	@Autowired
 	private ConnectionDao gDao;
 

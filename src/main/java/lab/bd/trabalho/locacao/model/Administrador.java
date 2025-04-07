@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Administrador {
-	
+
 	private int codigo;
 	private String nome;
 	private String usuario;

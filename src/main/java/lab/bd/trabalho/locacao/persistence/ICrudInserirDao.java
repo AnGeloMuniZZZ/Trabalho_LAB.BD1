@@ -3,7 +3,7 @@ package lab.bd.trabalho.locacao.persistence;
 import java.sql.SQLException;
 
 public interface ICrudInserirDao<T> {
-	
+
 	/**
 	 * Realiza a inserção de uma Entidade T no Banco de dados SQL
 	 * 
@@ -13,5 +13,5 @@ public interface ICrudInserirDao<T> {
 	 * @throws SQLException
 	 */
 	public String inserir(T t) throws ClassNotFoundException, SQLException;
-	
+
 }

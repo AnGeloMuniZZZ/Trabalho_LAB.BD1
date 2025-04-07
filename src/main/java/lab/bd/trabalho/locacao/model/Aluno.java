@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Aluno {
-	
+
 	private String cpf;
 	private String ra;
 	private String nome_completo;

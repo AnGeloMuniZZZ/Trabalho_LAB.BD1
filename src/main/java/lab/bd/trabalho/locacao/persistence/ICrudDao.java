@@ -3,8 +3,8 @@ package lab.bd.trabalho.locacao.persistence;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ICrudDao<T> extends ICrudInserirDao<T>{
-	
+public interface ICrudDao<T> extends ICrudInserirDao<T> {
+
 	/**
 	 * Realiza um update da Entidade T no banco de dados SQL
 	 * 
@@ -13,9 +13,8 @@ public interface ICrudDao<T> extends ICrudInserirDao<T>{
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public String atualizar (T t) throws ClassNotFoundException, SQLException;
-	
-	
+	public String atualizar(T t) throws ClassNotFoundException, SQLException;
+
 	/**
 	 * Busca os dados da Entidade T com base em um de seus atributos
 	 * 
@@ -25,8 +24,7 @@ public interface ICrudDao<T> extends ICrudInserirDao<T>{
 	 * @throws SQLException
 	 */
 	public T buscar(T t) throws ClassNotFoundException, SQLException;
-	
-	
+
 	/**
 	 * Procura uma lista da Entidade T no banco de dados SQL
 	 * 

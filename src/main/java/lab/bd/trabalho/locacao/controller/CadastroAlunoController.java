@@ -19,10 +19,11 @@ public class CadastroAlunoController {
 
 	@Autowired
 	private AlunoDao aDao;
-	
+
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.GET)
 	/**
-	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /cadastroAluno
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina
+	 * /cadastroAluno
 	 * 
 	 * @param params
 	 * @param model
@@ -32,7 +33,6 @@ public class CadastroAlunoController {
 		return new ModelAndView("cadastroAluno");
 	}
 
-	
 	@RequestMapping(name = "cadastroAluno", value = "/cadastroAluno", method = RequestMethod.POST)
 	/**
 	 * Cria o objeto aluno e tenta inseri-lo no banco
@@ -46,19 +46,20 @@ public class CadastroAlunoController {
 		String nome = params.get("nome_completo");
 		String senha = params.get("senha");
 		String cmd = params.get("botao");
-		
+
 		Aluno a = new Aluno();
 		a.setCpf(cpf);
 		a.setNome_completo(nome);
 		a.setSenha(senha);
-		
+
 		String saida = "";
 		String erro = "";
-		
+
 		try {
 			if (cmd.equalsIgnoreCase("inserir")) {
 				saida = aDao.inserir(a);
-				//Criação da variavel aTemp para retirada dos campos RA e email, que eram apenas tradados no SQL
+				// Criação da variavel aTemp para retirada dos campos RA e email, que eram
+				// apenas tradados no SQL
 				Aluno aTemp = aDao.buscar(a);
 				a.setEmail(aTemp.getEmail());
 				a.setRa(aTemp.getRa());
@@ -70,7 +71,7 @@ public class CadastroAlunoController {
 		model.addAttribute("erro", erro);
 		model.addAttribute("saida", saida);
 		model.addAttribute("aluno", a);
-		
+
 		return new ModelAndView("cadastroAluno");
 	}
 }

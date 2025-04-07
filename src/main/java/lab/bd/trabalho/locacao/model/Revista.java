@@ -11,9 +11,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Revista extends Exemplar{
-	
+public class Revista extends Exemplar {
+
 	private int exemplarcodigo;
 	private String sigla;
-	
+
 }

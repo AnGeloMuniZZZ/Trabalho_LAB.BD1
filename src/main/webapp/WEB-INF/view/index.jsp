@@ -13,7 +13,7 @@
 	<div class=div_gata_sora__direita></div>
 	<div class=div_gata_sora__esquerda></div>
 	<br />
-	
+
 	<div align="center" class=div_login>
 		<div>
 			<form method="post" action="index">
@@ -44,12 +44,13 @@
 				</table>
 			</form>
 		</div>
-		
+
 		<div>
 			<c:if test="${validar > 0}">
 				<c:if test="${not empty validar}">
 					<h1 class="h2_mensagem_VALIDACAO">Logado com sucesso!!!</h1>
-					<a href="visualizarExemplar" class="a_link_clicavel">Alugar exemplares</a>
+					<a href="visualizarExemplar" class="a_link_clicavel">Alugar
+						exemplares</a>
 					<h1 class="h2_mensagem_ERRO">Aluguel não disponivel ainda!</h1>
 				</c:if>
 			</c:if>
@@ -57,10 +58,14 @@
 
 		<div>
 			<c:if test="${not empty saida }">
-				<h2 class="h2_mensagem_VALIDACAO"> <c:out value="${saida }" /></h2>
+				<h2 class="h2_mensagem_VALIDACAO">
+					<c:out value="${saida }" />
+				</h2>
 			</c:if>
 			<c:if test="${not empty erro }">
-				<h2 class="h2_mensagem_ERRO"><c:out value="${erro }" /></h2>
+				<h2 class="h2_mensagem_ERRO">
+					<c:out value="${erro }" />
+				</h2>
 			</c:if>
 		</div>
 	</div>

@@ -12,10 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Locacao {
-	
+
 	private Exemplar exemplar;
 	private Aluno aluno;
 	private LocalDate dataRetirada;
 	private int qntDias;
-	
+
 }

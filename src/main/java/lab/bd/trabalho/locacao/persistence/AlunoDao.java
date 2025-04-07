@@ -55,7 +55,6 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 		return saida;
 	}
 
-
 	@Override
 	public Aluno buscar(Aluno a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();
@@ -63,7 +62,7 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, a.getCpf());
 		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
+		if (rs.next()) {
 			a.setCpf(rs.getString("cpf"));
 			a.setRa(rs.getString("ra"));
 			a.setNome_completo(rs.getString("nome_completo"));
@@ -97,7 +96,7 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 		con.close();
 		return alunos;
 	}
-	
+
 	@Override
 	public int realizarLogin(Aluno a) throws ClassNotFoundException, SQLException {
 		Connection con = gDao.getConnection();

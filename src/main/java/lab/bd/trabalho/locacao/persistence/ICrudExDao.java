@@ -3,7 +3,7 @@ package lab.bd.trabalho.locacao.persistence;
 import java.sql.SQLException;
 
 public interface ICrudExDao<T> extends ICrudDao<T> {
-	
+
 	/**
 	 * Realiza a exclusao de uma Entidade T no banco de dados SQL
 	 * 
@@ -12,6 +12,6 @@ public interface ICrudExDao<T> extends ICrudDao<T> {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public String excluir (T t) throws ClassNotFoundException, SQLException;
+	public String excluir(T t) throws ClassNotFoundException, SQLException;
 
 }

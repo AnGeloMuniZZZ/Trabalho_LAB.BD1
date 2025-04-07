@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import lab.bd.trabalho.locacao.model.Livro;
 
 @Repository
-public class LivroDao implements ICrudExDao<Livro>{
+public class LivroDao implements ICrudExDao<Livro> {
 
 	@Autowired
 	private ConnectionDao gDao;
@@ -127,10 +127,10 @@ public class LivroDao implements ICrudExDao<Livro>{
 		con.close();
 		return livros;
 	}
-	
+
 	/**
-	 * Envia uma Entidade e com base nos seus atributos (issn ou isbn) 
-	 * descobre se é um (L)ivro ou (R)evista
+	 * Envia uma Entidade e com base nos seus atributos (issn ou isbn) descobre se é
+	 * um (L)ivro ou (R)evista
 	 * 
 	 * @param Livro l
 	 * @return Um Char L ou R
@@ -151,8 +151,8 @@ public class LivroDao implements ICrudExDao<Livro>{
 	}
 
 	/**
-	 * Envia uma Entidade e com base nos seus atributos (chave primaria) 
-	 * descobre se é um (L)ivro ou (R)evista
+	 * Envia uma Entidade e com base nos seus atributos (chave primaria) descobre se
+	 * é um (L)ivro ou (R)evista
 	 * 
 	 * @param Livro l
 	 * @return Um Char L ou R
