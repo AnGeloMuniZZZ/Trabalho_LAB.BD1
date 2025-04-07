@@ -22,7 +22,18 @@ public class ControleAlunoController {
 	private AlunoDao aDao;
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public ModelAndView controleAlunoGet(@RequestParam Map<String, String> params, ModelMap model) {
+=======
+	/**
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /cadastroAluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina GET
+	 */
+	public ModelAndView pessoaGet(@RequestParam Map<String, String> params, ModelMap model) {
+>>>>>>> branch 'master' of git@github.com:AnGeloMuniZZZ/Trabalho_LAB.BD1.git
 		String acao = params.get("acao");
 		String cpf = params.get("id");
 		Aluno a = new Aluno();
@@ -47,7 +58,18 @@ public class ControleAlunoController {
 	}
 	
 	@RequestMapping(name = "controleAluno", value = "/controleAluno", method = RequestMethod.POST)
+<<<<<<< HEAD
 	public ModelAndView controleAlunoPost(@RequestParam Map<String, String> params, ModelMap model) {
+=======
+	/**
+	 * Realiza o Controle de Atualizacao, Busca e Listagem da Entidade Aluno
+	 * 
+	 * @param params
+	 * @param model
+	 * @return Retorna requisao POST e mensagens de erro, saida e aviso
+	 */
+	public ModelAndView pessoaPost(@RequestParam Map<String, String> params, ModelMap model) {
+>>>>>>> branch 'master' of git@github.com:AnGeloMuniZZZ/Trabalho_LAB.BD1.git
 		String cpf = params.get("cpf");
 		String senha = params.get("senha");
 		String cmd = params.get("botao");

@@ -22,6 +22,13 @@ public class LoginAdministradorController {
 	private AdministradorDao aDao;
 	
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.GET)
+	/**
+	 * Funcao responsavel por mapear a requisicao GET e carregar a pagina /loginAdministrador
+	 * 
+	 * @param params
+	 * @param model
+	 * @return A requisicao da pagina GET
+	 */
 	public ModelAndView administradorGet(@RequestParam Map<String, String> params, ModelMap model) {
 		Administrador a = new Administrador();
 		
@@ -31,6 +38,13 @@ public class LoginAdministradorController {
 	}
 	
 	@RequestMapping(name = "loginAdministrador", value = "/loginAdministrador", method = RequestMethod.POST)
+	/**
+	 * Realiza a validacao de Login do Administrado, além de criar e inserir um novo administrador no banco de dados
+	 * 
+	 * @param params
+	 * @param model
+	 * @return Retorna requisao POST e mensagens de erro, saida e aviso
+	 */
 	public ModelAndView administradorPost(@RequestParam Map<String, String> params, ModelMap model) {
 		String codigo = params.get("codigo");
 		String nome = params.get("nome");
