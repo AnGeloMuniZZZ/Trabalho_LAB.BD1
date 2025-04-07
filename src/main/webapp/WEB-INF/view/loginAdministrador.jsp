@@ -43,14 +43,14 @@
 			</form>
 		</div>
 
-		<br /> <br />
+		<br />
 
 		<div>
 			<c:if test="${validar > 0}">
 				<c:if test="${not empty validar}">
-					<h1>Logado com sucesso!!!</h1>
-					<a href="controleExemplar">Fazer controle dos exemplares</a>
-					<a href="controleAluno">Fazer controle dos alunos</a>
+					<h1 class="h2_mensagem_VALIDACAO">Logado com sucesso!!!</h1>
+					<a href="controleExemplar" class="a_link_clicavel">Fazer controle dos exemplares</a>
+					<a href="controleAluno" class="a_link_clicavel">Fazer controle dos alunos</a>
 				</c:if>
 			</c:if>
 		</div>
@@ -83,8 +83,7 @@
 							name="senha" value='<c:out value="${administrador.senha }"/>'></td>
 					</tr>
 					<tr>
-						<td colspan="4"><input type="submit" name="botao"
-							value="inserir" class="btn btn-dark">
+						<td colspan="8"><input style="width:100% " type="submit" name="botao" value="inserir">
 						<td />
 					</tr>
 				</table>
