@@ -18,8 +18,7 @@ import lab.bd.trabalho.locacao.model.Aluno;
 @Repository
 public class AlunoDao implements ICrudDao<Aluno>, ICrudLoginDao<Aluno> {
 
-	@Autowired
-	private ConnectionDao gDao;
+	private ConnectionDao gDao = new ConnectionDao();
 
 	@Override
 	public String inserir(Aluno a) throws ClassNotFoundException, SQLException {

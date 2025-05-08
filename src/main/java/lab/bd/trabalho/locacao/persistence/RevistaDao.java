@@ -17,8 +17,7 @@ import lab.bd.trabalho.locacao.model.Revista;
 @Repository
 public class RevistaDao implements ICrudExDao<Revista> {
 
-	@Autowired
-	private ConnectionDao gDao;
+	private ConnectionDao gDao = new ConnectionDao();
 
 	@Override
 	public String inserir(Revista r) throws ClassNotFoundException, SQLException {

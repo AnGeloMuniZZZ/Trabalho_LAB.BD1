@@ -75,7 +75,7 @@
 			</form>
 		</div>
 
-		</br>
+		<br />
 		<div>
 			<a class="a_link_clicavel" href="loginAdministrador">Deslogar</a> <a
 				class="a_link_clicavel" href="controleAluno">Controle de Alunos</a>

@@ -58,8 +58,9 @@
 			</form>
 		</div>
 
+		<br /> 
 		<div>
-			<br /> <a class="a_link_clicavel" href="loginAdministrador">Deslogar</a>
+			<a class="a_link_clicavel" href="loginAdministrador">Deslogar</a>
 			<a class="a_link_clicavel" href="controleExemplar">Cadastrar
 				Exemplares</a>
 		</div>

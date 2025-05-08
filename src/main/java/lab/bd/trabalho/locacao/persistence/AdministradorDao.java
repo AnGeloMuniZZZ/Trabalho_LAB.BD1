@@ -16,8 +16,7 @@ import lab.bd.trabalho.locacao.model.Aluno;
 @Repository
 public class AdministradorDao implements ICrudInserirDao<Administrador>, ICrudLoginDao<Administrador> {
 
-	@Autowired
-	private ConnectionDao gDao;
+	private ConnectionDao gDao = new ConnectionDao();
 
 	@Override
 	public String inserir(Administrador a) throws ClassNotFoundException, SQLException {

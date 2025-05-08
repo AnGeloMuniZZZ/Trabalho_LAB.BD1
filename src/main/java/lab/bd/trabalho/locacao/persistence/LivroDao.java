@@ -17,8 +17,7 @@ import lab.bd.trabalho.locacao.model.Livro;
 @Repository
 public class LivroDao implements ICrudExDao<Livro> {
 
-	@Autowired
-	private ConnectionDao gDao;
+	private ConnectionDao gDao = new ConnectionDao();
 
 	@Override
 	public String inserir(Livro l) throws ClassNotFoundException, SQLException {

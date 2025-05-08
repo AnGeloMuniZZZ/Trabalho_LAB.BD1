@@ -2,7 +2,7 @@ CREATE DATABASE LocacaoLivros
 GO
 USE LocacaoLivros
 GO
--------------------------------------------------------------------------- CRIAÇÃO DE TABELAS --------------------------------------------------------------------------- 
+-------------------------------------------------------------------------- CRIAï¿½ï¿½O DE TABELAS --------------------------------------------------------------------------- 
 CREATE TABLE Aluno(
 cpf	VARCHAR(11) NOT NULL PRIMARY KEY,
 ra	VARCHAR(10) NOT NULL,
@@ -56,8 +56,8 @@ FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar (codigo_exemplar)
 )
 GO
 
-------------------------------------------------------------------------- CRIAÇÃO DE PROCEDUREs ------------------------------------------------------------------------ 
--- Calcula o 1º digito verificador --
+------------------------------------------------------------------------- CRIAï¿½ï¿½O DE PROCEDUREs ------------------------------------------------------------------------ 
+-- Calcula o 1ï¿½ digito verificador --
 CREATE PROCEDURE calcular_primeiro_digito_cpf(@cpf VARCHAR(11), @primeiroDigito INTEGER OUTPUT) AS
 DECLARE @contador INTEGER
 DECLARE @multiplicador INTEGER
@@ -83,7 +83,7 @@ ELSE BEGIN
 END
 GO
 
--- Calcula o 2º digito verificador --
+-- Calcula o 2ï¿½ digito verificador --
 CREATE PROCEDURE calcular_segundo_digito_cpf(@cpf VARCHAR(11), @segundoDigito INTEGER OUTPUT) AS 
 DECLARE @contador INTEGER
 DECLARE @multiplicador INTEGER
@@ -197,7 +197,7 @@ IF @senha LIKE '%[0-9]%' AND @contador = 8 BEGIN
 	SET @validacao = 1
 END
 ELSE BEGIN
-	SET @validacao = 0
+	SET @validacaoï¿½=ï¿½0
 END
 GO
 
@@ -294,7 +294,7 @@ ELSE BEGIN
 		IF(@validacao_senha = 1 AND @duplicata_cpf = 1) BEGIN
 			BEGIN TRY
 				UPDATE Aluno SET senha = @senha WHERE cpf = @cpf
-				SET @saida = 'Aluno(a) ' + @nome_completo + ' ATUALIZADO(A) com sucesso'
+				SET @saida = 'Aluno(a) ATUALIZADO(A) com sucesso'
 			END TRY
 			BEGIN CATCH
 				SET @erro = ERROR_MESSAGE()
@@ -549,7 +549,7 @@ AS
 			IF (@validaCPF = 1 AND @validaExemplar = 1) BEGIN
 				BEGIN TRY
 					INSERT INTO Locacao VALUES (@cod_locacao, @alunoCpf, @codExemplar, @dt_retirada, @qtd_dias)
-					SET @saida = 'Locação inserida com sucesso'
+					SET @saida = 'Locaï¿½ï¿½o inserida com sucesso'
 				END TRY
 				BEGIN CATCH
 					SET @erro = ERROR_MESSAGE()
@@ -594,7 +594,7 @@ GO
 
 
 ---------------------------------------------------------------------------- TESTES ----------------------------------------------------------------------------- 
---Função: calcular_primeiro_digito_cpf
+--Funï¿½ï¿½o: calcular_primeiro_digito_cpf
 --teste 1 (Saida deve retornar 9, igual ao penultimo digito do cpf)
 DECLARE @test1_calcular_primeiro_digito_cpf INT
 EXEC calcular_primeiro_digito_cpf '10559848790', @test1_calcular_primeiro_digito_cpf OUTPUT
@@ -651,7 +651,7 @@ PRINT(@test2_encontrar_ra)
 GO
 
 
---Funcao: gerar_ra (ACHO Q NAO PREISA ENVIAR O CPF, VALIDAÇÃO DEVE SER FEITA EM OUTRO LUGAR)
+--Funcao: gerar_ra (ACHO Q NAO PREISA ENVIAR O CPF, VALIDAï¿½ï¿½O DEVE SER FEITA EM OUTRO LUGAR)
 -- teste 1 (CPF valido, deve retornar um RA)
 DECLARE @test1_gerar_ra VARCHAR(10)
 EXEC gerar_ra @test1_gerar_ra OUTPUT
@@ -678,7 +678,7 @@ GO
 
 
 --Funcao: verificar_email_igual 
--- teste 1 (Não existe emails identicos, retorna 0)
+-- teste 1 (Nï¿½o existe emails identicos, retorna 0)
 DECLARE @test1_verificar_email_igual BIT
 EXEC verificar_email_igual 'fabio.alves', @test1_verificar_email_igual OUTPUT
 PRINT(@test1_verificar_email_igual)
@@ -707,7 +707,7 @@ DECLARE @test1_criar_email VARCHAR(80)
 EXEC criar_email 'renato heiji morimoto', @test1_criar_email OUTPUT
 PRINT(@test1_criar_email)
 
--- teste 2 (cria um e-mail para uma pessoa com nome homônimo na tabela, deve retornar "alexandre.oliveira2")
+-- teste 2 (cria um e-mail para uma pessoa com nome homï¿½nimo na tabela, deve retornar "alexandre.oliveira2")
 INSERT INTO Aluno VALUES ('05006476079', '2222517870', 'alexandre marques de oliveira', 'alexandre.oliveira', '123senha')
 INSERT INTO Aluno VALUES ('71906765030', '2222512410', 'alexandre marques de oliveira', 'alexandre.oliveira1', '321senha')
 SELECT * FROM Aluno
@@ -860,7 +860,7 @@ PRINT(@test6_controle_exemplar)
 SELECT * FROM Exemplar WHERE codigo_exemplar = 6
 SELECT * FROM Livro WHERE ExemplarCodigo = 6
 
--- teste 7 (Tentar Inserir dados invalidos) TÁ JOGANDO 3 RAISERROS
+-- teste 7 (Tentar Inserir dados invalidos) Tï¿½ JOGANDO 3 RAISERROS
 DECLARE @test7_controle_exemplar VARCHAR(100)
 EXEC controle_exemplar 'I', 7, 0, 'Um Livro? Revista? Quem sabe?', 0, '0', 0, @test7_controle_exemplar OUTPUT
 PRINT(@test7_controle_exemplar)
@@ -868,7 +868,7 @@ SELECT * FROM Exemplar WHERE codigo_exemplar = 7
 SELECT * FROM Livro WHERE ExemplarCodigo = 7
 SELECT * FROM Revista WHERE ExemplarCodigo = 7
 
--- teste 8 (Atualizar um Exemplar com dados invalidos)  TA JOGANDO 3 RAIERROS isso é muito erro
+-- teste 8 (Atualizar um Exemplar com dados invalidos)  TA JOGANDO 3 RAIERROS isso ï¿½ muito erro
 INSERT INTO Exemplar VALUES (8, 77, 'Revista Super Velha com DUAS unidades de mofo', 42)
 INSERT INTO Revista VALUES (8, '82420261')
 DECLARE @test8_controle_exemplar VARCHAR(100)
